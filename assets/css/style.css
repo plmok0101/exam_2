@@ -1,0 +1,23 @@
+.cen{
+position: fixed;
+left: 50%;
+transform: translate(-50%);
+}
+.background{
+    background-color: skyblue;
+}
+.po{
+    text-align: center;
+    position: fixed;
+    top: 320px;
+    width: 100%;
+    height: 100%;
+}
+.textwh{
+    width: 400px;
+    height: 50px;
+}
+.submitwh{
+    width: 100px;
+    height: 50px;
+}
