@@ -1,64 +1,37 @@
 api_key = "RGAPI-36ee680b-3a79-4409-b916-8aea231793bd";
-
+ //닉네임으로 유저정보 얻기
 function getPuuid(){
     $.getJSON("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + nickname + "?api_key=" + api_key, function(data){
-        $('body').append("<p>id="+(data.id)+"</p>");
-        $('body').append("<p>puuid="+(data.puuid)+"</p>");
         puuid = (data.puuid);
     })
 }
+//최근10판 게임 ID얻기
 function getTotalID(){
     $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&api_key=" + api_key, function(data){
-        
-        game1 = (data[0]);
-        game2 = (data[1]);
-        game3 = (data[2]);
-        game4 = (data[3]);
-        game5 = (data[4]);
-        game6 = (data[5]);
-        game7 = (data[6]);
-        game8 = (data[7]);
-        game9 = (data[8]);
-        game10 = (data[9]);
-        //each문으로 배열로 받을예정
-       game1 = (data[0]);
-        $('body').append("<p>id="+(data[0])+"</p>");
+        game = (data);
+        alert(game);
     })
 }
 
 $(document).ready(function(){
     
     let nickname;
-
+    let game = [];
 
     $("#form").submit(function(event){
         event.preventDefault();
         nickname = $("#nickname").val();
-        /*
-        //닉네임으로 유저정보 얻기
+        
         $.getJSON("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + nickname + "?api_key=" + api_key, function(data){
-            $('body').append("<p>id="+(data.id)+"</p>");
-            $('body').append("<p>puuid="+(data.puuid)+"</p>");
             puuid = (data.puuid);
         })
+
         $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=10&api_key=" + api_key, function(data){
-           
-            game1 = (data[0]);
-            game2 = (data[1]);
-            game3 = (data[2]);
-            game4 = (data[3]);
-            game5 = (data[4]);
-            game6 = (data[5]);
-            game7 = (data[6]);
-            game8 = (data[7]);
-            game9 = (data[8]);
-            game10 = (data[9]);
-            
-           game1 = (data[0]);
-            $('body').append("<p>id="+(data[0])+"</p>");
+            game = (data);
+            alert(game[0]);
         })
-*/
-        $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/" + "KR_6192872633" + "?api_key=" + api_key,function(data){
+
+        $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/" + game[0] + "?api_key=" + api_key,function(data){
             $('body').append("<p>어시="+(data.info.participants[0].assists)+"</p>");
             $('body').append("<p>킬="+(data.info.participants[0].kills)+"</p>");
             $('body').append("<p>챔피언="+(data.info.participants[0].championName)+"</p>");
