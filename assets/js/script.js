@@ -1,4 +1,4 @@
-api_key = "RGAPI-36ee680b-3a79-4409-b916-8aea231793bd";
+api_key = "RGAPI-7a31f444-76c8-4619-92dd-29c885be5493";
  //닉네임으로 유저정보 얻기
 function getPuuid(){
     $.getJSON("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + nickname + "?api_key=" + api_key, function(data){
@@ -46,14 +46,14 @@ $(document).ready(function(){
         for(let i = 0; i < 10; i++){
             $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/" + game[i] + "?api_key=" + api_key,function(data){
                 for(let j = 0; j <10; j++){
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].championName)+"</span>");
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].summonerName)+"</span>");
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].kills)+"</span>");
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].deaths)+"</span>");
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].assists)+"</span>");
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].totalMinionsKilled)+"</span>");//수정필요함
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].totalDamageDealtToChampions)+"</span>");
-                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].goldEarned)+"</span>");
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].championName)+"</span>");//챔피언
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].summonerName)+"</span>");//닉
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].kills)+"</span>");//킬
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].deaths)+"</span>");//데스
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].assists)+"</span>");//어시
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].totalMinionsKilled)+"</span>");//수정필요
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].totalDamageDealtToChampions)+"</span>");//딜량
+                    $(".game" + [i+1] + " > .pick"+[j+1]).append("<span>  "+(data.info.participants[j].goldEarned)+"</span>");//획득골드
                 }
             })
         }
