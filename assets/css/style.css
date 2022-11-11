@@ -21,39 +21,19 @@ transform: translate(-50%);
     width: 100px;
     height: 50px;
 }
-.game1{
-    margin-top: 20px;
-}
-.game2{
-    margin-top: 20px;
-}
-.game3{
-    margin-top: 20px;
-}
-.game4{
-    margin-top: 20px;
-}
-.game5{
-    margin-top: 20px;
-}
-.game6{
-    margin-top: 20px;
-}
-.game7{
-    margin-top: 20px;
-}
-.game8{
-    margin-top: 20px;
-}
-.game9{
-    margin-top: 20px;
-}
-.game10{
-    margin-top: 20px;
-}
 .btn{
     width: 500px;
     height: 50px ;
     position: absolute;
     bottom: 0px;
+}
+
+.blue{
+    background-color: aqua;
+}
+.read{
+    background-color: indianred;
+}
+.game{
+    margin-bottom: 50px;
 }

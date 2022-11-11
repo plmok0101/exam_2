@@ -20,10 +20,57 @@
                 <input type="text" class ="textwh" id ="nickname" placeholder="소환사명을 입력하세요." />
                 <button type="submit" id ="search" class="submitwh" >검색</button>
         </form>
-        <div class="game0"></div>
+        <div class="con"></div>
         <script id = "template" type="text/template">
+            <div class = game>
+                <div class="head">
+                    <span>{gamemode}</span><span>{date}</span><span>{wl}</span><span>{time}</span>
+                </div>
+                <div class="blue">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan = "2">{win_lose}</th>
+                                <th>kda</th>
+                                <th>cs</th>
+                                <th>딜</th>
+                                <th>골드</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="read">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan = "2">{win_lose}</th>
+                                <th>kda</th>
+                                <th>cs</th>
+                                <th>딜</th>
+                                <th>골드</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                            <tr>    <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>    </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </script>
-        </section>
-        <button type="button" class="btn cen" >더보기</button>
+        <ul class="content"></ul>
+        <!-- <button type="button" class="btn cen" >더보기</button> -->
     </main>
 </body>
