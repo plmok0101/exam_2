@@ -1,4 +1,4 @@
-api_key = "RGAPI-9aeefb3f-74ba-4106-a87c-4c23bc8a21c5";
+api_key = "RGAPI-8cfe852b-2069-4a73-aa16-cc560c70fdfc";
  //닉네임으로 유저정보 얻기
 
 function getPuuid(){
@@ -51,32 +51,36 @@ $(document).ready(function(){
     let game = [];
     let puuid;
     let html = document.querySelector("#template").innerHTML
-    var result = "";
+    var result;
     $("#form").submit(function(event){
         event.preventDefault();
         nickname = $("#nickname").val();
 
-        $.getJSON("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + nickname + "?api_key=" + api_key, function(data){
+        $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
             puuid = (data.puuid);
-            $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?start=0&count=20&api_key=" + api_key, function(data){
+            console.log(puuid);
+            $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
                 game = (data);
-                for(let i = 0; i < 1; i++){
-                    $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/" + game[i] + "?api_key=" + api_key,function(data){
-                           result += html.replace("{champion}",data.info.participants[i].championName)
-                            .replace("{userName}",data.info.participants[i].summonerName)
-                            .replace("{k}",data.info.participants[i].kills+"/")
-                            .replace("{d}",data.info.participants[i].deaths+"/")
-                            .replace("{a}",data.info.participants[i].assists)
-                            .replace("{cs}",data.info.participants[i].totalMinionsKilled)
-                            .replace("{damage}",data.info.participants[i].totalDamageDealtToChampions)
-                            .replace("{gold}",data.info.participants[i].goldEarned)
-                            .replace("{gamemode}",data.info.gameMode)
-                            .replace("{time}",data.info.gameDuration+"s");
+                console.log(data[0]);
+                for(let i = 0; i < 5; i++){
+                    $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
+                        for(let j = 0; j < 10; j++){
+                            result += html.replace(`{champion${j+1}}`,data.info.participants[j].championName)
+                                      html.replace(`{userName${j+1}}`,data.info.participants[j].summonerName)
+                                      html.replace(`{k${j+1}}`,data.info.participants[j].kills+"/")
+                                      html.replace(`{d${j+1}}`,data.info.participants[j].deaths+"/")
+                                      html.replace(`{a${j+1}}`,data.info.participants[j].assists)
+                                      html.replace(`{cs${j+1}}`,data.info.participants[j].totalMinionsKilled)
+                                      html.replace(`{damage${j+1}}`,data.info.participants[j].totalDamageDealtToChampions)
+                                      html.replace(`{gold${j+1}}`,data.info.participants[j].goldEarned)
+                                      html.replace(`{gamemode}`,data.info.gameMode)
+                                      html.replace(`{time}`,data.info.gameDuration+"s");
+                        }
+                        document.querySelector(".con").innerHTML += result;
                     })
                 }
             })
         })
-        document.querySelector(".con").innerHTML = result;
     })
 
 })
