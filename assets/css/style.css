@@ -31,9 +31,34 @@ transform: translate(-50%);
 .blue{
     background-color: aqua;
 }
-.read{
+.red{
     background-color: indianred;
 }
 .game{
     margin-bottom: 50px;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.loading{
+    border: 9px solid gray;
+    border-radius: 50%;
+    border-color: gray gray gray transparent;
+    width: 100px;
+    height: 100px;
+    animation: spinning 1s linear infinite;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+@keyframes spinning {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }
