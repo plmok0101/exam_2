@@ -11,6 +11,7 @@
 </head>
 <body class="background">
     <main>
+        <div class="loading"></div>
         <header class="header">
             <img src="assets/image/op.gg.jpg" alt="My Image" width="800" height="300" class="cen"/>
         </header>
@@ -47,7 +48,7 @@
                     </table>
                 </div>
 
-                <div class="read">
+                <div class="red">
                     <table>
                         <thead>
                             <tr>
@@ -70,7 +71,53 @@
 
             </div>
         </script>
-        <ul class="content"></ul>
+        <button type="button" id = "btn">test</button>
         <!-- <button type="button" class="btn cen" >더보기</button> -->
+        <script id = "template2" type="text/template">
+            <div class = game>
+                <div class="head">
+                    <span>{gamemode}</span><span>{date}</span><span>{wl}</span><span>{time}</span>
+                </div>
+                <div class="blue">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan = "2" class = "wl">{win_lose1}</th>
+                                <th>kda</th>
+                                <th>cs</th>
+                                <th>딜</th>
+                                <th>골드</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "blue2">
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="red">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan = "2">{win_lose2}</th>
+                                <th>kda</th>
+                                <th>cs</th>
+                                <th>딜</th>
+                                <th>골드</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "red2">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </script>
+
+        <script id = "template3" type="text/template"> 
+            <tr>
+                <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>
+            </tr>
+        </script>
     </main>
 </body>
