@@ -93,32 +93,8 @@ $(document).ready(function(){
         $(".loading").css("display", 'block');
         setTimeout(function(){
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/KR_6192872633?api_key=${api_key}`,function(data){
-                result2 += html2.replace(`{time}`,data.info.gameDuration+"s")
-                                .replace(`{gamemode}`,data.info.queueId);
-                switch(data.info.queueId){
-                    case "420" :
-                        result2 += html2.replace(`{gamemode}`,"솔랭");
-                        break;
-                    case "430" :
-                        result2 += html2.replace(`{gamemode}`,"일반");
-                        alert("1234");
-                        break;
-                    case "440" :
-                        result2 += html2.replace(`{gamemode}`,"자유랭크");
-                        break;
-                    case "450" :
-                        result2 += html2.replace(`{gamemode}`,"칼바람");
-                        break;
-                    case "700" :
-                        result2 += html2.replace(`{gamemode}`,"격전");
-                        break;
-                    case "900" :
-                        result2 += html2.replace(`{gamemode}`,"URF");
-                        break;
-                    case "ofa" :
-                        result2 += html2.replace(`{gamemode}`,"단일모드");
-                        break;
-                };
+                result2 += html2.replace(`{time}`,data.info.gameDuration+"s");
+                let abc123 = (data.info.queueId);
                 document.querySelector(".con").innerHTML = result2;
                 for(let n = 0; n<10; n++){
                     if(n<5){
