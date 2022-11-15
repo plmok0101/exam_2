@@ -1,4 +1,4 @@
-api_key = "RGAPI-8cfe852b-2069-4a73-aa16-cc560c70fdfc";
+let api_key = "RGAPI-2ff223ac-e07a-4911-9b7d-98fe9a624854";
  //닉네임으로 유저정보 얻기
 
 function getPuuid(){
@@ -45,6 +45,20 @@ function createDiv(){
     }
 }
 
+function abc3(){
+    for (let j = 0; j<10; j++){
+        html.replace(`{champion${j+1}}`,data.info.participants[j].championName)
+            .replace(`{userName${j+1}}`,data.info.participants[j].summonerName)
+            .replace(`{k${j+1}}`,data.info.participants[j].kills+"/")
+            .replace(`{d${j+1}}`,data.info.participants[j].deaths+"/")
+            .replace(`{a${j+1}}`,data.info.participants[j].assists)
+            .replace(`{cs${j+1}}`,data.info.participants[j].totalMinionsKilled)
+            .replace(`{damage${j+1}}`,data.info.participants[j].totalDamageDealtToChampions)
+            .replace(`{gold${j+1}}`,data.info.participants[j].goldEarned)
+            .replace(`{gamemode}`,data.info.gameMode)
+            .replace(`{time}`,data.info.gameDuration+"s");
+    };
+};
 
 
 $(document).ready(function(){
@@ -68,23 +82,23 @@ $(document).ready(function(){
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
                 game = (data);
                 console.log(data[2]);
-                for(let i = 0; i < 5; i++){
+                for(let i = 0; i < 1; i++){
                     $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
-                        for(let j = 0; j < 10; j++){
-                            result += html.replace(`{champion${j+1}}`,data.info.participants[j].championName)
-                                      html.replace(`{userName${j+1}}`,data.info.participants[j].summonerName)
-                                      html.replace(`{k${j+1}}`,data.info.participants[j].kills+"/")
-                                      html.replace(`{d${j+1}}`,data.info.participants[j].deaths+"/")
-                                      html.replace(`{a${j+1}}`,data.info.participants[j].assists)
-                                      html.replace(`{cs${j+1}}`,data.info.participants[j].totalMinionsKilled)
-                                      html.replace(`{damage${j+1}}`,data.info.participants[j].totalDamageDealtToChampions)
-                                      html.replace(`{gold${j+1}}`,data.info.participants[j].goldEarned)
-                                      html.replace(`{gamemode}`,data.info.gameMode)
-                                      html.replace(`{time}`,data.info.gameDuration+"s");
+                        for(let j = 0; j < 1; j++){
+                        result += html.replace(`{champion${j+1}}`,data.info.participants[j].championName)
+                                      .replace(`{userName${j+1}}`,data.info.participants[j].summonerName)
+                                      .replace(`{k${j+1}}`,data.info.participants[j].kills+"/")
+                                      .replace(`{d${j+1}}`,data.info.participants[j].deaths+"/")
+                                      .replace(`{a${j+1}}`,data.info.participants[j].assists)
+                                      .replace(`{cs${j+1}}`,data.info.participants[j].totalMinionsKilled)
+                                      .replace(`{damage${j+1}}`,data.info.participants[j].totalDamageDealtToChampions)
+                                      .replace(`{gold${j+1}}`,data.info.participants[j].goldEarned)
+                                      .replace(`{gamemode}`,data.info.gameMode)
+                                      .replace(`{time}`,data.info.gameDuration+"s");
                         }
                     })
-                    document.querySelector(".con").innerHTML = result;
                 }
+                document.querySelector(".con").innerHTML = result;
             })
         })
     })
@@ -93,8 +107,33 @@ $(document).ready(function(){
         $(".loading").css("display", 'block');
         setTimeout(function(){
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/KR_6192872633?api_key=${api_key}`,function(data){
-                result2 += html2.replace(`{time}`,data.info.gameDuration+"s");
-                let abc123 = (data.info.queueId);
+                let abc = (data.info.queueId);
+                let min = parseInt((data.info.gameDuration)/60);
+                let sec = parseInt((data.info.gameDuration)%60);
+                alert(min);
+                switch(abc){
+                    case 420 :
+                        abc = "솔로랭크";
+                        break;
+                    case 430 :
+                        abc = "일반";
+                        break;
+                    case 440 :
+                        abc = "자유랭크";
+                        break;
+                    case 450 :
+                        abc = "킬바람";
+                        break;
+                    case 700 :
+                        abc = "격전";
+                        break;
+                    case 900 :
+                        abc = "URF";
+                    case 1020 :
+                        abc = "단일모드";
+                };    
+                result2 += html2.replace(`{time}`,`${min}분${sec}초`)
+                                .replace(`{gamemode}`,abc);
                 document.querySelector(".con").innerHTML = result2;
                 for(let n = 0; n<10; n++){
                     if(n<5){
