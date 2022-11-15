@@ -22,19 +22,19 @@
         </form>
         <div class="con">
             <div class="loading"></div>
-            <!-- <button type="button" class="cen" id="plusBtn" >더보기</button> -->
         </div>
-        <!--<button type="button" id = "btn">test</button>-->
+        <button type="button" class="cen" id="plusBtn" >더보기</button>
+        <button type="button" id = "btn">test</button>
         <script id = "template" type="text/template">
             <div class = game id ="game">
                 <div class="head">
-                    <span>{gamemode}</span><span>{date}</span><span>{wl}</span><span>{time}</span>
+                    <span>{gamemode}</span><span>{date}</span><span id = "WL">{wl}</span><span>{time}</span>
                 </div>
                 <div class="blue">
                     <table class="blueTable">
                         <thead>
                             <tr>
-                                <th colspan = "2" class = "wl">{win_lose1}</th>
+                                <th colspan = "2" class = "wl">{wlBlue}</th>
                                 <th>kda</th>
                                 <th>cs</th>
                                 <th>딜</th>
@@ -51,7 +51,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan = "2">{win_lose2}</th>
+                                <th colspan = "2">{wlRed}</th>
                                 <th>kda</th>
                                 <th>cs</th>
                                 <th>딜</th>

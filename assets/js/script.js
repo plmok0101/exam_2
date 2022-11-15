@@ -67,9 +67,17 @@ $(document).ready(function(){
     let puuid;
     let html = document.querySelector("#template").innerHTML;
     let html2 = document.querySelector("#template2").innerHTML;
-    let con = document.querySelector(".con");
-    let result = "";
-    let result2 = "";
+    let a = 0;
+    let resultblue;
+    let resultred;
+    let min;
+    let abc;
+    let sec;
+    let wlBlue;
+    let wlRed;
+    $("#plusBtn").click(function(){
+        alert(a);
+    })
     
     $("#form").submit(function(event){
         event.preventDefault();
@@ -82,11 +90,13 @@ $(document).ready(function(){
                 game = (data);
                 for(let i = 0; i < 5; i++){
                     $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
-                        let resultblue ="";
-                        let resultred = "";
-                        let abc = (data.info.queueId);
-                        let min = parseInt((data.info.gameDuration)/60);
-                        let sec = parseInt((data.info.gameDuration)%60);
+                        resultblue ="";
+                        resultred = "";
+                        abc = (data.info.queueId);
+                        min = parseInt((data.info.gameDuration)/60);
+                        sec = parseInt((data.info.gameDuration)%60);
+                        wlBlue = (data.info.participants[0].win);
+                        wlRed = (data.info.participants[5].win); 
                         switch(abc){
                             case 420 :
                                 abc = "솔로랭크";
@@ -108,19 +118,45 @@ $(document).ready(function(){
                             case 1020 :
                                 abc = "단일모드";
                         };
+                        switch(wlBlue){
+                            case true :
+                                wlBlue = "승리";
+                                break;
+                            case false :
+                                wlBlue = "패배";
+                                break;
+                        }
+                        switch(wlRed){
+                            case true :
+                                wlRed = "승리";
+                                break;
+                            case false :
+                                wlRed = "패배";
+                                break;
+                        }
                         $(".con").append(
                             html.replace(`id ="game"`, `id ="game${i+1}"`)
                                  .replace(`{time}`,`${min}분${sec}초`)
                                  .replace(`{gamemode}`,abc)
+                                 .replace(`{wlBlue}`,wlBlue)
+                                 .replace(`{wlRed}`,wlRed)
+                                 .replace(`{date}`,data.info.gameStartTimestamp)
                         );
                         for(let n = 0; n<10; n++){
+                            if(nickname == (data.info.participants[n].summonerName).trim()){
+                                if(data.info.participants[n].win){
+                                    $(`#game${i+1} > .head > #WL`).text("승리");
+                                }else{
+                                    $(`#game${i+1} > .head > #WL`).text("패배");
+                                }
+                            }
                             if(n<5){
                                 resultblue += html2.replace(`{champion}`,data.info.participants[n].championName)
                                                    .replace(`{userName}`,data.info.participants[n].summonerName)
                                                    .replace(`{k}`,data.info.participants[n].kills+"/")
                                                    .replace(`{d}`,data.info.participants[n].deaths+"/")
                                                    .replace(`{a}`,data.info.participants[n].assists)
-                                                   .replace(`{cs}`,data.info.participants[n].totalMinionsKilled)
+                                                   .replace(`{cs}`,(data.info.participants[n].totalMinionsKilled) + (data.info.participants[n].neutralMinionsKilled))
                                                    .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
                                                    .replace(`{gold}`,data.info.participants[n].goldEarned);
                             }else{
@@ -129,7 +165,7 @@ $(document).ready(function(){
                                                   .replace(`{k}`,data.info.participants[n].kills+"/")
                                                   .replace(`{d}`,data.info.participants[n].deaths+"/")
                                                   .replace(`{a}`,data.info.participants[n].assists)
-                                                  .replace(`{cs}`,data.info.participants[n].totalMinionsKilled)
+                                                  .replace(`{cs}`,data.info.participants[n].totalMinionsKilled + (data.info.participants[n].neutralMinionsKilled))
                                                   .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
                                                   .replace(`{gold}`,data.info.participants[n].goldEarned);
                            }
@@ -137,6 +173,7 @@ $(document).ready(function(){
                         document.querySelector(`#game${i+1} .blue2`).innerHTML = resultblue;
                         document.querySelector(`#game${i+1} .red2`).innerHTML = resultred; 
                     })
+                    a++
                 }
 
             })
@@ -146,17 +183,7 @@ $(document).ready(function(){
     })
 
     $("#btn").click(function(){
-        setTimeout(function(){
-            $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/KR_6192872633?api_key=${api_key}`,function(data){
-                for(let i =0; i<5; i++){
-                    $(".con").append(
-                        html.replace(`class = game`, `class = game${i+1}`)
-                    );
-                }
-            })
-
-        },500)
-
+        alert(puuid);
     })
 })
 
