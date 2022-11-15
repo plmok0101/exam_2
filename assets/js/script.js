@@ -67,99 +67,94 @@ $(document).ready(function(){
     let puuid;
     let html = document.querySelector("#template").innerHTML;
     let html2 = document.querySelector("#template2").innerHTML;
-    let html3 = document.querySelector("#template3").innerHTML;
+    let con = document.querySelector(".con");
     let result = "";
     let result2 = "";
-    let resultblue ="";
-    let resultred = "";
     
     $("#form").submit(function(event){
         event.preventDefault();
+        $(".loading").css("display", 'inline-block');
+        setTimeout(function(){
         nickname = $("#nickname").val();
         $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
             puuid = (data.puuid);
-            console.log(puuid);
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
                 game = (data);
-                console.log(data[2]);
-                for(let i = 0; i < 1; i++){
+                for(let i = 0; i < 5; i++){
                     $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
-                        for(let j = 0; j < 1; j++){
-                        result += html.replace(`{champion${j+1}}`,data.info.participants[j].championName)
-                                      .replace(`{userName${j+1}}`,data.info.participants[j].summonerName)
-                                      .replace(`{k${j+1}}`,data.info.participants[j].kills+"/")
-                                      .replace(`{d${j+1}}`,data.info.participants[j].deaths+"/")
-                                      .replace(`{a${j+1}}`,data.info.participants[j].assists)
-                                      .replace(`{cs${j+1}}`,data.info.participants[j].totalMinionsKilled)
-                                      .replace(`{damage${j+1}}`,data.info.participants[j].totalDamageDealtToChampions)
-                                      .replace(`{gold${j+1}}`,data.info.participants[j].goldEarned)
-                                      .replace(`{gamemode}`,data.info.gameMode)
-                                      .replace(`{time}`,data.info.gameDuration+"s");
+                        let resultblue ="";
+                        let resultred = "";
+                        let abc = (data.info.queueId);
+                        let min = parseInt((data.info.gameDuration)/60);
+                        let sec = parseInt((data.info.gameDuration)%60);
+                        switch(abc){
+                            case 420 :
+                                abc = "솔로랭크";
+                                break;
+                            case 430 :
+                                abc = "일반";
+                                break;
+                            case 440 :
+                                abc = "자유랭크";
+                                break;
+                            case 450 :
+                                abc = "킬바람";
+                                break;
+                            case 700 :
+                                abc = "격전";
+                                break;
+                            case 900 :
+                                abc = "URF";
+                            case 1020 :
+                                abc = "단일모드";
+                        };
+                        $(".con").append(
+                            html.replace(`id ="game"`, `id ="game${i+1}"`)
+                                 .replace(`{time}`,`${min}분${sec}초`)
+                                 .replace(`{gamemode}`,abc)
+                        );
+                        for(let n = 0; n<10; n++){
+                            if(n<5){
+                                resultblue += html2.replace(`{champion}`,data.info.participants[n].championName)
+                                                   .replace(`{userName}`,data.info.participants[n].summonerName)
+                                                   .replace(`{k}`,data.info.participants[n].kills+"/")
+                                                   .replace(`{d}`,data.info.participants[n].deaths+"/")
+                                                   .replace(`{a}`,data.info.participants[n].assists)
+                                                   .replace(`{cs}`,data.info.participants[n].totalMinionsKilled)
+                                                   .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
+                                                   .replace(`{gold}`,data.info.participants[n].goldEarned);
+                            }else{
+                                resultred += html2.replace(`{champion}`,data.info.participants[n].championName)
+                                                  .replace(`{userName}`,data.info.participants[n].summonerName)
+                                                  .replace(`{k}`,data.info.participants[n].kills+"/")
+                                                  .replace(`{d}`,data.info.participants[n].deaths+"/")
+                                                  .replace(`{a}`,data.info.participants[n].assists)
+                                                  .replace(`{cs}`,data.info.participants[n].totalMinionsKilled)
+                                                  .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
+                                                  .replace(`{gold}`,data.info.participants[n].goldEarned);
+                           }
                         }
+                        document.querySelector(`#game${i+1} .blue2`).innerHTML = resultblue;
+                        document.querySelector(`#game${i+1} .red2`).innerHTML = resultred; 
                     })
                 }
-                document.querySelector(".con").innerHTML = result;
+
             })
         })
+        $(".loading").css("display", 'none');
+        },500)
     })
 
     $("#btn").click(function(){
-        $(".loading").css("display", 'block');
         setTimeout(function(){
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/KR_6192872633?api_key=${api_key}`,function(data){
-                let abc = (data.info.queueId);
-                let min = parseInt((data.info.gameDuration)/60);
-                let sec = parseInt((data.info.gameDuration)%60);
-                alert(min);
-                switch(abc){
-                    case 420 :
-                        abc = "솔로랭크";
-                        break;
-                    case 430 :
-                        abc = "일반";
-                        break;
-                    case 440 :
-                        abc = "자유랭크";
-                        break;
-                    case 450 :
-                        abc = "킬바람";
-                        break;
-                    case 700 :
-                        abc = "격전";
-                        break;
-                    case 900 :
-                        abc = "URF";
-                    case 1020 :
-                        abc = "단일모드";
-                };    
-                result2 += html2.replace(`{time}`,`${min}분${sec}초`)
-                                .replace(`{gamemode}`,abc);
-                document.querySelector(".con").innerHTML = result2;
-                for(let n = 0; n<10; n++){
-                    if(n<5){
-                        resultblue += html3.replace(`{champion}`,data.info.participants[n].championName)
-                                           .replace(`{userName}`,data.info.participants[n].summonerName)
-                                           .replace(`{k}`,data.info.participants[n].kills+"/")
-                                           .replace(`{d}`,data.info.participants[n].deaths+"/")
-                                           .replace(`{a}`,data.info.participants[n].assists)
-                                           .replace(`{cs}`,data.info.participants[n].totalMinionsKilled)
-                                           .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
-                                           .replace(`{gold}`,data.info.participants[n].goldEarned);
-                    }else{
-                        resultred += html3.replace(`{champion}`,data.info.participants[n].championName)
-                                          .replace(`{userName}`,data.info.participants[n].summonerName)
-                                          .replace(`{k}`,data.info.participants[n].kills+"/")
-                                          .replace(`{d}`,data.info.participants[n].deaths+"/")
-                                          .replace(`{a}`,data.info.participants[n].assists)
-                                          .replace(`{cs}`,data.info.participants[n].totalMinionsKilled)
-                                          .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
-                                          .replace(`{gold}`,data.info.participants[n].goldEarned);
-                   }
+                for(let i =0; i<5; i++){
+                    $(".con").append(
+                        html.replace(`class = game`, `class = game${i+1}`)
+                    );
                 }
-                document.querySelector(".blue2").innerHTML = resultblue;
-                document.querySelector(".red2").innerHTML = resultred;
-        })
-        $(".loading").css("display", 'none');
+            })
+
         },500)
 
     })

@@ -11,7 +11,6 @@
 </head>
 <body class="background">
     <main>
-        <div class="loading"></div>
         <header class="header">
             <img src="assets/image/op.gg.jpg" alt="My Image" width="800" height="300" class="cen"/>
         </header>
@@ -21,65 +20,18 @@
                 <input type="text" class ="textwh" id ="nickname" placeholder="소환사명을 입력하세요." />
                 <button type="submit" id ="search" class="submitwh" >검색</button>
         </form>
-        <div class="con"></div>
+        <div class="con">
+            <div class="loading"></div>
+            <!-- <button type="button" class="cen" id="plusBtn" >더보기</button> -->
+        </div>
+        <!--<button type="button" id = "btn">test</button>-->
         <script id = "template" type="text/template">
-            <div class = game>
+            <div class = game id ="game">
                 <div class="head">
                     <span>{gamemode}</span><span>{date}</span><span>{wl}</span><span>{time}</span>
                 </div>
                 <div class="blue">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan = "2">{win_lose}</th>
-                                <th>kda</th>
-                                <th>cs</th>
-                                <th>딜</th>
-                                <th>골드</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>    <td>{champion1}</td><td>{userName1}</td><td>{k1}{d1}{a1}</td><td>{cs1}</td><td>{damage1}</td><td>{gold1}</td>    </tr>
-                            <tr>    <td>{champion2}</td><td>{userName2}</td><td>{k2}{d2}{a2}</td><td>{cs2}</td><td>{damage2}</td><td>{gold2}</td>    </tr>
-                            <tr>    <td>{champion3}</td><td>{userName3}</td><td>{k3}{d3}{a3}</td><td>{cs3}</td><td>{damage3}</td><td>{gold3}</td>    </tr>
-                            <tr>    <td>{champion4}</td><td>{userName4}</td><td>{k4}{d4}{a4}</td><td>{cs4}</td><td>{damage4}</td><td>{gold4}</td>    </tr>
-                            <tr>    <td>{champion5}</td><td>{userName5}</td><td>{k5}{d5}{a5}</td><td>{cs5}</td><td>{damage5}</td><td>{gold5}</td>    </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="red">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan = "2">{win_lose}</th>
-                                <th>kda</th>
-                                <th>cs</th>
-                                <th>딜</th>
-                                <th>골드</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>    <td>{champion6}</td><td>{userName6}</td><td>{k6}{d6}{a6}</td><td>{cs6}</td><td>{damage6}</td><td>{gold6}</td>    </tr>
-                            <tr>    <td>{champion7}</td><td>{userName7}</td><td>{k7}{d7}{a7}</td><td>{cs7}</td><td>{damage7}</td><td>{gold7}</td>    </tr>
-                            <tr>    <td>{champion8}</td><td>{userName8}</td><td>{k8}{d8}{a8}</td><td>{cs8}</td><td>{damage8}</td><td>{gold8}</td>    </tr>
-                            <tr>    <td>{champion9}</td><td>{userName9}</td><td>{k9}{d9}{a9}</td><td>{cs9}</td><td>{damage9}</td><td>{gold9}</td>    </tr>
-                            <tr>    <td>{champion10}</td><td>{userName10}</td><td>{k10}{d10}{a10}</td><td>{cs10}</td><td>{damage10}</td><td>{gold10}</td>    </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </script>
-        <button type="button" id = "btn">test</button>
-        <!-- <button type="button" class="btn cen" >더보기</button> -->
-        <script id = "template2" type="text/template">
-            <div class = game>
-                <div class="head">
-                    <span>{gamemode}</span><span>{date}</span><span>{wl}</span><span>{time}</span>
-                </div>
-                <div class="blue">
-                    <table>
+                    <table class="blueTable">
                         <thead>
                             <tr>
                                 <th colspan = "2" class = "wl">{win_lose1}</th>
@@ -113,8 +65,8 @@
 
             </div>
         </script>
-
-        <script id = "template3" type="text/template"> 
+        <!---->
+        <script id = "template2" type="text/template"> 
             <tr>
                 <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>
             </tr>
