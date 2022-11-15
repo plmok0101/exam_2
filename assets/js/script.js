@@ -60,6 +60,10 @@ function abc3(){
     };
 };
 
+function test1234(){
+    $("#form").submit();
+}
+
 
 $(document).ready(function(){
     let nickname;
@@ -76,7 +80,8 @@ $(document).ready(function(){
     let wlBlue;
     let wlRed;
     $("#plusBtn").click(function(){
-        alert(a);
+        a +=5;
+        $("#form").submit();
     })
     
     $("#form").submit(function(event){
@@ -88,7 +93,7 @@ $(document).ready(function(){
             puuid = (data.puuid);
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
                 game = (data);
-                for(let i = 0; i < 5; i++){
+                for(let i = 0+a ; i < 5+a ; i++){
                     $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
                         resultblue ="";
                         resultred = "";
@@ -173,17 +178,19 @@ $(document).ready(function(){
                         document.querySelector(`#game${i+1} .blue2`).innerHTML = resultblue;
                         document.querySelector(`#game${i+1} .red2`).innerHTML = resultred; 
                     })
-                    a++
                 }
 
             })
         })
         $(".loading").css("display", 'none');
+        $("#plusBtn").css("display", "block");
         },500)
     })
 
     $("#btn").click(function(){
-        alert(puuid);
+        if(a < 15){
+            $("#plusBtn").css("display", "none");
+        }
     })
 })
 
