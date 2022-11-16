@@ -80,6 +80,9 @@ $(document).ready(function(){
     let wlBlue;
     let wlRed;
     let date;
+    let spel1
+    let spel2
+    let nowDate;
     $("#plusBtn").click(function(){
         a +=5;
         $("#form").submit();
@@ -141,7 +144,7 @@ $(document).ready(function(){
                                 break;
                         }
                         date = new Date(data.info.gameStartTimestamp);
-                        date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`
+                        date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
                         $(".con").append(
                             html.replace(`id ="game"`, `id ="game${i+1}"`)
                                  .replace(`{time}`,`${min}분${sec}초`)
@@ -158,9 +161,83 @@ $(document).ready(function(){
                                     $(`#game${i+1} > .head > #WL`).text("패배");
                                 }
                             }
+                            spel1 = (data.info.participants[n].summoner1Id);
+                            switch(spel1){
+                                case 1 :
+                                    spel1 = "Boost"
+                                break;
+                                case 3 :
+                                    spel1 = "Exhaust"
+                                break;
+                                case 4 :
+                                    spel1 = "Flash"
+                                break;
+                                case 6 :
+                                    spel1 = "Haste"
+                                break;
+                                case 7 :
+                                    spel1 = "heal"
+                                break;
+                                case 11 :
+                                    spel1 = "smite"
+                                break;
+                                case 12 :
+                                    spel1 = "Teleport"
+                                break;
+                                case 13 :
+                                    spel1 = "Mana"
+                                break;
+                                case 14 :
+                                    spel1 = "dot"
+                                break;
+                                case 21 :
+                                    spel1 = "barrier"
+                                break;
+                                case 32 :
+                                    spel1 = "snowball"
+                                break;
+                            }
+                            spel2 = (data.info.participants[n].summoner2Id);
+                            switch(spel2){
+                                case 1 :
+                                    spel2 = "Boost"
+                                break;
+                                case 3 :
+                                    spel2 = "Exhaust"
+                                break;
+                                case 4 :
+                                    spel2 = "Flash"
+                                break;
+                                case 6 :
+                                    spel2 = "Haste"
+                                break;
+                                case 7 :
+                                    spel2 = "heal"
+                                break;
+                                case 11 :
+                                    spel2 = "smite"
+                                break;
+                                case 12 :
+                                    spel2 = "Teleport"
+                                break;
+                                case 13 :
+                                    spel2 = "Mana"
+                                break;
+                                case 14 :
+                                    spel2 = "dot"
+                                break;
+                                case 21 :
+                                    spel2 = "barrier"
+                                break;
+                                case 32 :
+                                    spel2 = "snowball"
+                                break;
+                            }
                             if(n<5){
-                                resultblue += html2.replace(`{champion}`,data.info.participants[n].championName)
-                                                   .replace(`{userName}`,data.info.participants[n].summonerName)
+                                resultblue += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
+                                                    .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                                    .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                                    .replace(`{userName}`,data.info.participants[n].summonerName)
                                                    .replace(`{k}`,data.info.participants[n].kills+"/")
                                                    .replace(`{d}`,data.info.participants[n].deaths+"/")
                                                    .replace(`{a}`,data.info.participants[n].assists)
@@ -168,8 +245,10 @@ $(document).ready(function(){
                                                    .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
                                                    .replace(`{gold}`,data.info.participants[n].goldEarned);
                             }else{
-                                resultred += html2.replace(`{champion}`,data.info.participants[n].championName)
+                                resultred += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
                                                   .replace(`{userName}`,data.info.participants[n].summonerName)
+                                                  .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                                  .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
                                                   .replace(`{k}`,data.info.participants[n].kills+"/")
                                                   .replace(`{d}`,data.info.participants[n].deaths+"/")
                                                   .replace(`{a}`,data.info.participants[n].assists)
@@ -192,7 +271,8 @@ $(document).ready(function(){
 
     $("#btn").click(function(){
         if(a < 15){
-            $("#plusBtn").css("display", "none");
+            let abcd = Date.now();
+            alert(abcd);
         }
     })
 })
