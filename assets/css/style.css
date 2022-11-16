@@ -1,5 +1,7 @@
 .header{
-    width: 100%; height: auto;
+    width: 100%; height: 100%;
+	overflow:hidden;
+    display: block;
 }
 
 
@@ -20,15 +22,16 @@ transform: translate(-50%);
 }
 .section{
     text-align: center;
+    display: block;
     position: absolute;
-    top: 200px;
+    top:30%;
     width: 100%; height: 100%;
 }
 .textwh{
-    width: 400px;   height: 50px;
+    width: 70%;   height: 50px;
 }
 .submitwh{
-    width: 100px;   height: 50px;
+    width: 20%;   height: 50px;
 }
 .btn{
     width: 500px;   height: 50px ;
@@ -45,7 +48,7 @@ transform: translate(-50%);
 }
 .game{
     padding: 20px 0px 20px 0px;
-    width: 500px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -68,4 +71,39 @@ transform: translate(-50%);
 }
 #plusBtn{
     display: none;
+}
+.table{
+    width: 100%; height: auto;
+    text-align: center;
+}
+.textLeft{
+    text-align: left;
+}
+#WL{
+    width: 70px;
+    float: left
+}
+.gamemode{
+    width: 70px;
+    float: left;
+}
+.time{
+    width: 100px;
+    float: left;
+}
+.date{
+    width: 150px;
+    float: light;
+    text-align: right;
+}
+@media (min-width: 700px){
+    .textwh{
+        width: 500px;
+    }
+    .submitwh{
+        width: 100px;
+    }
+    .game{
+        width: 600px;    
+    }
 }

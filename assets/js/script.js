@@ -141,7 +141,8 @@ $(document).ready(function(){
                                 break;
                         }
                         date = new Date(data.info.gameStartTimestamp);
-                        date = `${date.getFullYear()}년${date.getMonth()}월${date.getHours()}일`
+                        console.log(date)
+                        date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`
                         $(".con").append(
                             html.replace(`id ="game"`, `id ="game${i+1}"`)
                                  .replace(`{time}`,`${min}분${sec}초`)

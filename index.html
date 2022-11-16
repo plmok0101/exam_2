@@ -22,16 +22,16 @@
                 <button type="submit" id ="search" class="submitwh" >검색</button>
         </form>
         <div class="con">
-            <div class="loading"></div>
         </div>
+        <div class="loading"></div>
         <button type="button" class="cen" id="plusBtn" >더보기</button>
         <script id = "template" type="text/template">
             <div class = game id ="game">
                 <div class="head">
-                    <span>{gamemode}</span><span>{date}</span><span id = "WL">{wl}</span><span>{time}</span>
+                    <span id = "WL">{wl}</span><span class ="gamemode">{gamemode}</span><span class="time">{time}</span><span class="date">{date}</span>
                 </div>
                 <div class="blue">
-                    <table class="blueTable">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th colspan = "2" class = "wl">{wlBlue}(블루팀)</th>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="red">
-                    <table>
+                    <table class ="table">
                         <thead>
                             <tr>
                                 <th colspan = "2">{wlRed}(레드팀)</th>
@@ -62,13 +62,17 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </script>
         <!---->
         <script id = "template2" type="text/template"> 
             <tr>
-                <td>{champion}</td><td>{userName}</td><td>{k}{d}{a}</td><td>{cs}</td><td>{damage}</td><td>{gold}</td>
+                <td id="champion">{champion}</td>
+                <td class="textLeft" id="userName">{userName}</td>
+                <td id="KDA">{k}{d}{a}</td>
+                <td id="cs">{cs}</td>
+                <td id="damage">{damage}</td>
+                <td id="gold">{gold}</td>
             </tr>
         </script>
     </main>
