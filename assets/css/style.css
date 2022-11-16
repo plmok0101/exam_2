@@ -1,42 +1,50 @@
+.header{
+    width: 100%; height: auto;
+}
+
+
 .cen{
-position: absolute;
-left: 50%;
+position: absolute; left: 50%;
 transform: translate(-50%);
 }
 .background{
-    background-color: skyblue;
+    background-color: black;
 }
-.po{
+.size{
+    max-width: 100%;    height: auto;
+    display: block;
+}
+.head{
+    background-color: white;
+    border: 5px double;
+}
+.section{
     text-align: center;
     position: absolute;
-    top: 320px;
-    width: 100%;
-    height: 100%;
+    top: 200px;
+    width: 100%; height: 100%;
 }
 .textwh{
-    width: 400px;
-    height: 50px;
+    width: 400px;   height: 50px;
 }
 .submitwh{
-    width: 100px;
-    height: 50px;
+    width: 100px;   height: 50px;
 }
 .btn{
-    width: 500px;
-    height: 50px ;
-    position: absolute;
-    bottom: 0px;
+    width: 500px;   height: 50px ;
+    position: absolute; bottom: 0px;
 }
 
 .blue{
-    background-color: aqua;
+    background-color: #b3cbff;
+    border: 5px double blue;
 }
 .red{
-    background-color: indianred;
+    background-color: #ff99a8;
+    border: 5px double red;
 }
 .game{
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding: 20px 0px 20px 0px;
     width: 500px;
     margin: 0 auto;
 }
@@ -45,8 +53,7 @@ transform: translate(-50%);
     border: 9px solid gray;
     border-radius: 50%;
     border-color: gray gray gray transparent;
-    width: 100px;
-    height: 100px;
+    width: 100px;   height: 100px;
     animation: spinning 1s linear infinite;
     display: none;
     z-index: 100;

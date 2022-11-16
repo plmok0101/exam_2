@@ -1,4 +1,4 @@
-let api_key = "RGAPI-2ff223ac-e07a-4911-9b7d-98fe9a624854";
+let api_key = "RGAPI-98228dfe-5b5d-4430-9b56-073792183cf2";
  //닉네임으로 유저정보 얻기
 
 function getPuuid(){
@@ -79,6 +79,7 @@ $(document).ready(function(){
     let sec;
     let wlBlue;
     let wlRed;
+    let date;
     $("#plusBtn").click(function(){
         a +=5;
         $("#form").submit();
@@ -139,13 +140,15 @@ $(document).ready(function(){
                                 wlRed = "패배";
                                 break;
                         }
+                        date = new Date(data.info.gameStartTimestamp);
+                        date = `${date.getFullYear()}년${date.getMonth()}월${date.getHours()}일`
                         $(".con").append(
                             html.replace(`id ="game"`, `id ="game${i+1}"`)
                                  .replace(`{time}`,`${min}분${sec}초`)
                                  .replace(`{gamemode}`,abc)
                                  .replace(`{wlBlue}`,wlBlue)
                                  .replace(`{wlRed}`,wlRed)
-                                 .replace(`{date}`,data.info.gameStartTimestamp)
+                                 .replace(`{date}`,date)
                         );
                         for(let n = 0; n<10; n++){
                             if(nickname == (data.info.participants[n].summonerName).trim()){
