@@ -143,6 +143,13 @@ $(document).ready(function(){
                                 wlRed = "패배";
                                 break;
                         }
+                        let now = new Date();
+
+                        let year = now.getFullYear();
+                        let month = now.getMonth()+1;
+                        let day  = now.getDate(date.getFullYear(),date.getMonth()+1,date.getDate());
+                        
+                        let stDate = new Date()
                         date = new Date(data.info.gameStartTimestamp);
                         date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
                         $(".con").append(
