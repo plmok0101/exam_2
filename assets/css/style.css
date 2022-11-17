@@ -122,8 +122,8 @@ transform: translate(-50%);
     float: left;
 }
 .size2{
-    width: 20px;
-    height: auto;
+    width: auto;
+    height: 40px;
 }
 #champLevel{
     width: 15px;
