@@ -150,4 +150,7 @@ transform: translate(-50%);
     .box{
         width: 500px;
     }
+    header{
+        height: 300px;
+    }
 }
