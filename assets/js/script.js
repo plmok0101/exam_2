@@ -66,6 +66,7 @@ function test1234(){
 
 
 $(document).ready(function(){
+    $("header").css("height",$("#opgg").height());
     let nickname;
     let game = [];
     let puuid;
