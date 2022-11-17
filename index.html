@@ -11,7 +11,7 @@
 </head>
 <body class="background">
     <header>
-        <img src="assets/image/op.gg.jpg" class="cen size"/>
+        <img src="assets/image/op.gg.jpg" class="cen size" id="opgg"/>
     </header>
     <section class="section">
         <div class="con">
@@ -19,7 +19,7 @@
                 <div class="box cen">
                 <label for = "nickname"></label>
                 <input type="text" id ="nickname" placeholder="소환사 검색.">
-                <button type="submit" id ="search"><img src="assets/image/search.jpg" class="size2"/></button>
+                <button type="submit" id ="search"><img src="assets/image/search2.png" class="size2"/></button>
             </div>
             </form>
         </div> 
@@ -80,4 +80,11 @@
         <td id="damage">{damage}</td>
         <td id="gold">{gold}</td>
     </tr>
+</script>
+<script id = "template3" type="text/template">
+    <div>
+        <div id=id>{wl}{time}</div>
+        <div id=chap>{champion}{spell1}{spell2}</div>
+        <div>{gamemode}{date}<div>
+    <div>
 </script>

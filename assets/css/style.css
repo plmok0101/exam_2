@@ -1,7 +1,4 @@
 @import "reset.css";
-header{
-    height: 250px;
-}
 button{
     background-color: transparent
 }
@@ -10,6 +7,21 @@ button{
 }
 #spell{
     width: 20px;
+}
+#userName{
+    width: 100px;
+}
+#KDA{
+    width: 70PX;
+}
+#cs{
+    width: 40px;
+}
+#damage{
+    width: 70px;
+}
+#gold{
+    width: 70px;
 }
 .box{
     position: relative;
@@ -21,12 +33,12 @@ button{
     border: none;
     outline: none;
     position:absolute; left: 30px;
-    width: 60%;
+    width: 70%;
     height: 90%;
 }
 #search{
-    position: absolute; right: 30px;
-    width: 20%;   height: 45px;
+    position: absolute; right: 0px;
+    width: 20%;   height: 30px;
     border: none;
 }
 .con{
@@ -150,8 +162,5 @@ transform: translate(-50%);
     }
     .box{
         width: 500px;
-    }
-    header{
-        height: 300px;
     }
 }
