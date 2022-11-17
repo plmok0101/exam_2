@@ -174,6 +174,7 @@ $(document).ready(function(){
                                      .replace(`{wlBlue}`,wlBlue)
                                      .replace(`{wlRed}`,wlRed)
                                      .replace(`{date}`,btDay+"일전")
+                                     .replace(`{Wl}`,)
                             );
                         }else{
                             $(".con").append(
@@ -188,7 +189,7 @@ $(document).ready(function(){
                         for(let n = 0; n<10; n++){
                             if(nickname == (data.info.participants[n].summonerName).trim()){
                                 if(data.info.participants[n].win){
-                                    $(`#game${i+1} > .head > #WL`).text("승리");
+                                    $(`#game${i+1} > #table > #tr > .head >#WL`).text("승리");
                                 }else{
                                     $(`#game${i+1} > .head > #WL`).text("패배");
                                 }
