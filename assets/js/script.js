@@ -1,4 +1,4 @@
-let api_key = "RGAPI-98228dfe-5b5d-4430-9b56-073792183cf2";
+let api_key = "RGAPI-fa07d6a5-0a35-4511-afc0-74e1ea397644";
  //닉네임으로 유저정보 얻기
 
 function getPuuid(){
@@ -83,6 +83,13 @@ $(document).ready(function(){
     let spel1
     let spel2
     let nowDate;
+    let now;
+    let year;
+    let month;
+    let day;
+    let stDate;
+    let endDae;
+    let btMs;
     $("#plusBtn").click(function(){
         a +=5;
         $("#form").submit();
@@ -124,6 +131,7 @@ $(document).ready(function(){
                                 break;
                             case 900 :
                                 abc = "URF";
+                                break;
                             case 1020 :
                                 abc = "단일모드";
                         };
@@ -143,23 +151,39 @@ $(document).ready(function(){
                                 wlRed = "패배";
                                 break;
                         }
-                        let now = new Date();
-
-                        let year = now.getFullYear();
-                        let month = now.getMonth()+1;
-                        let day  = now.getDate(date.getFullYear(),date.getMonth()+1,date.getDate());
-                        
-                        let stDate = new Date()
                         date = new Date(data.info.gameStartTimestamp);
+                        now = new Date();
+
+                        year = now.getFullYear();
+                        month = now.getMonth()+1;
+                        day = now.getDate();
+
+                        stDate  = new Date(date.getFullYear(),date.getMonth()+1,date.getDate());
+                        endDate = new Date(year, month, day);
+
+                        btMs = endDate.getTime() - stDate.getTime();
+                        btDay = btMs / (1000*60*60*24);
+
                         date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
-                        $(".con").append(
-                            html.replace(`id ="game"`, `id ="game${i+1}"`)
-                                 .replace(`{time}`,`${min}분${sec}초`)
-                                 .replace(`{gamemode}`,abc)
-                                 .replace(`{wlBlue}`,wlBlue)
-                                 .replace(`{wlRed}`,wlRed)
-                                 .replace(`{date}`,date)
-                        );
+                        if(btDay<10){
+                            $(".con").append(
+                                html.replace(`id ="game"`, `id ="game${i+1}"`)
+                                     .replace(`{time}`,`${min}분${sec}초`)
+                                     .replace(`{gamemode}`,abc)
+                                     .replace(`{wlBlue}`,wlBlue)
+                                     .replace(`{wlRed}`,wlRed)
+                                     .replace(`{date}`,btDay+"일전")
+                            );
+                        }else{
+                            $(".con").append(
+                                html.replace(`id ="game"`, `id ="game${i+1}"`)
+                                     .replace(`{time}`,`${min}분${sec}초`)
+                                     .replace(`{gamemode}`,abc)
+                                     .replace(`{wlBlue}`,wlBlue)
+                                     .replace(`{wlRed}`,wlRed)
+                                     .replace(`{date}`,date)
+                            );
+                        }
                         for(let n = 0; n<10; n++){
                             if(nickname == (data.info.participants[n].summonerName).trim()){
                                 if(data.info.participants[n].win){
@@ -242,9 +266,10 @@ $(document).ready(function(){
                             }
                             if(n<5){
                                 resultblue += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
-                                                    .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                                    .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                                    .replace(`{userName}`,data.info.participants[n].summonerName)
+                                                   .replace(`{champLevel}`,data.info.participants[n].champLevel)
+                                                   .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                                   .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                                   .replace(`{userName}`,data.info.participants[n].summonerName)
                                                    .replace(`{k}`,data.info.participants[n].kills+"/")
                                                    .replace(`{d}`,data.info.participants[n].deaths+"/")
                                                    .replace(`{a}`,data.info.participants[n].assists)
@@ -253,9 +278,10 @@ $(document).ready(function(){
                                                    .replace(`{gold}`,data.info.participants[n].goldEarned);
                             }else{
                                 resultred += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
-                                                  .replace(`{userName}`,data.info.participants[n].summonerName)
+                                                  .replace(`{champLevel}`,data.info.participants[n].champLevel)
                                                   .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
                                                   .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                                  .replace(`{userName}`,data.info.participants[n].summonerName)
                                                   .replace(`{k}`,data.info.participants[n].kills+"/")
                                                   .replace(`{d}`,data.info.participants[n].deaths+"/")
                                                   .replace(`{a}`,data.info.participants[n].assists)
@@ -281,6 +307,7 @@ $(document).ready(function(){
             let abcd = Date.now();
             alert(abcd);
         }
+        console.log(game[0]);
     })
 })
 

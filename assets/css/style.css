@@ -1,16 +1,39 @@
 @import "reset.css";
-
+header{
+    height: 250px;
+}
+button{
+    background-color: transparent
+}
 #champion{
     width: 40px;
 }
 #spell{
     width: 20px;
 }
-
+.box{
+    position: relative;
+    width: 80%;   height: 50px;
+    border-radius: 30px;
+    background-color: white;
+}
+#nickname{
+    border: none;
+    outline: none;
+    position:absolute; left: 30px;
+    height: 90%;
+}
+#search{
+    position: absolute; right: 30px;
+    width: 20%;   height: 45px;
+    border: none;
+}
+.con{
+    padding: 0 2% 0 2%;
+    text-align: center;
+}
 .header{
-    width: 100%; height: 100%;
 	overflow:hidden;
-    display: block;
 }
 .cen{
 position: absolute; left: 50%;
@@ -28,21 +51,13 @@ transform: translate(-50%);
     border: 5px double;
 }
 .section{
-    text-align: center;
-    display: block;
-    position: absolute;
-    top:30%;
+    position: relative;
     width: 100%; height: 100%;
-}
-.textwh{
-    width: 70%;   height: 50px;
-}
-.submitwh{
-    width: 20%;   height: 50px;
+    text-align: center;
 }
 .btn{
     width: 500px;   height: 50px ;
-    position: absolute; bottom: 0px;
+    background-color: wheat;
 }
 
 .blue{
@@ -60,6 +75,7 @@ transform: translate(-50%);
 }
 
 .loading{
+    position: relative;
     border: 9px solid gray;
     border-radius: 50%;
     border-color: gray gray gray transparent;
@@ -78,9 +94,12 @@ transform: translate(-50%);
 }
 #plusBtn{
     display: none;
+    background-color: white;
 }
 #userName{
     font-size: 13px;
+    display: table-cell;
+    vertical-align: middle;
 }
 .table{
     width: 100%; height: auto;
@@ -101,25 +120,33 @@ transform: translate(-50%);
     width: 100px;
     float: left;
 }
+.size2{
+    width: 20px;
+    height: auto;
+}
+#champLevel{
+    width: 15px;
+    color: white;
+    background-color: black;
+    border-radius: 30%;
+    font-size: 12px;
+}
 .date{
     width: 150px;
     float: light;
     text-align: right;
-}
-@media (min-width: 700px){
-    .textwh{
-        width: 500px;
-    }
-    .submitwh{
-        width: 100px;
-    }
-    .game{
-        width: 600px;    
-    }
 }
 .borderBlue{
  border: blue solid;
 }
 #champion{
     overflow:hidden;
+}
+@media (min-width: 700px){
+    .game{
+        width: 600px;    
+    }
+    .box{
+        width: 500px;
+    }
 }

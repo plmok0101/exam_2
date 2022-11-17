@@ -13,21 +13,24 @@
     <header>
         <img src="assets/image/op.gg.jpg" class="cen size"/>
     </header>
-        <button type="button" id = "btn">test</button>  <!--test버튼 -->
-        <section class="section">
+    <section class="section">
         <div class="con">
-            <div class="box">
-            <form id = "form" class="cen">
+            <form id = "form">
+                <div class="box cen">
                 <label for = "nickname"></label>
                 <input type="text" id ="nickname" placeholder="소환사 검색.">
                 <button type="submit" id ="search"><img src="assets/image/search.jpg" class="size"/></button>
-            </form>
             </div>
-        </div>
+            </form>
+        </div> 
     </section>
+    <div class="cen">
     <div class="loading"></div>
-    <button type="button" class="cen" id="plusBtn" >더보기</button>
+    <button type="button" id="plusBtn" >더보기</button>
+    </div>
 </body>
+
+
 <script id = "template" type="text/template">
     <div class = game id ="game">
         <div class="head">
@@ -69,7 +72,7 @@
 </script>
 <script id = "template2" type="text/template"> 
     <tr>
-        <td id="champion">{champion}<span id="champLevel">{champLevel}<span></td>
+        <td id="champion">{champion}</td>
         <td id= "spell">{spell1}{spell2}</td>
         <td class="textLeft" id="userName">{userName}</td>
         <td id="KDA">{k}{d}{a}</td>
