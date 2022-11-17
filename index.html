@@ -10,71 +10,71 @@
     <script src="assets/js/script.js"></script>
 </head>
 <body class="background">
-    <main>
-        <header class="header">
-            <img src="assets/image/op.gg.jpg" class="cen size"/>
-            </header>
-            <button type="button" id = "btn">test</button>  <!--test버튼 -->
+    <header>
+        <img src="assets/image/op.gg.jpg" class="cen size"/>
+    </header>
+        <button type="button" id = "btn">test</button>  <!--test버튼 -->
         <section class="section">
-        <form id = "form">
-                <label for = "nickname"></label>
-                <input type="text" class ="textwh" id ="nickname" placeholder="소환사명을 입력하세요." />
-                <button type="submit" id ="search" class="submitwh" >검색</button>
-        </form>
         <div class="con">
-        </div>
-        <div class="loading"></div>
-        <button type="button" class="cen" id="plusBtn" >더보기</button>
-        <script id = "template" type="text/template">
-            <div class = game id ="game">
-                <div class="head">
-                    <span id = "WL">{wl}</span><span class ="gamemode">{gamemode}</span><span class="time">{time}</span><span class="date">{date}</span>
-                </div>
-                <div class="blue">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th colspan = "2" class = "wl">{wlBlue}(블루팀)</th>
-                                <th>kda</th>
-                                <th>cs</th>
-                                <th>딜</th>
-                                <th>골드</th>
-                            </tr>
-                        </thead>
-                        <tbody class = "blue2">
-                            
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="red">
-                    <table class ="table">
-                        <thead>
-                            <tr>
-                                <th colspan = "2">{wlRed}(레드팀)</th>
-                                <th>kda</th>
-                                <th>cs</th>
-                                <th>딜</th>
-                                <th>골드</th>
-                            </tr>
-                        </thead>
-                        <tbody class = "red2">
-                        </tbody>
-                    </table>
-                </div>
+            <div class="box">
+            <form id = "form" class="cen">
+                <label for = "nickname"></label>
+                <input type="text" id ="nickname" placeholder="소환사 검색.">
+                <button type="submit" id ="search"><img src="assets/image/search.jpg" class="size"/></button>
+            </form>
             </div>
-        </script>
-        <!---->
-        <script id = "template2" type="text/template"> 
-            <tr>
-                <td id="champion">{champion}</td>
-                <td id= "spell">{spell1}{spell2}</td>
-                <td class="textLeft" id="userName">{userName}</td>
-                <td id="KDA">{k}{d}{a}</td>
-                <td id="cs">{cs}</td>
-                <td id="damage">{damage}</td>
-                <td id="gold">{gold}</td>
-            </tr>
-        </script>
-    </main>
+        </div>
+    </section>
+    <div class="loading"></div>
+    <button type="button" class="cen" id="plusBtn" >더보기</button>
 </body>
+<script id = "template" type="text/template">
+    <div class = game id ="game">
+        <div class="head">
+            <span id = "WL">{wl}</span><span class ="gamemode">{gamemode}</span><span class="time">{time}</span><span class="date">{date}</span>
+        </div>
+        <div class="blue">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan = "3" class = "wl">{wlBlue}(블루팀)</th>
+                        <th>kda</th>
+                        <th>cs</th>
+                        <th>딜</th>
+                        <th>골드</th>
+                    </tr>
+                </thead>
+                <tbody class = "blue2">
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="red">
+            <table class ="table">
+                <thead>
+                    <tr>
+                        <th colspan = "3">{wlRed}(레드팀)</th>
+                        <th>kda</th>
+                        <th>cs</th>
+                        <th>딜</th>
+                        <th>골드</th>
+                    </tr>
+                </thead>
+                <tbody class = "red2">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+<script id = "template2" type="text/template"> 
+    <tr>
+        <td id="champion">{champion}<span id="champLevel">{champLevel}<span></td>
+        <td id= "spell">{spell1}{spell2}</td>
+        <td class="textLeft" id="userName">{userName}</td>
+        <td id="KDA">{k}{d}{a}</td>
+        <td id="cs">{cs}</td>
+        <td id="damage">{damage}</td>
+        <td id="gold">{gold}</td>
+    </tr>
+</script>
