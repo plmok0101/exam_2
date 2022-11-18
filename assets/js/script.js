@@ -1,4 +1,4 @@
-let api_key = "RGAPI-fa07d6a5-0a35-4511-afc0-74e1ea397644";
+let api_key = "RGAPI-19bfae8f-4db8-4c6f-89fb-878e47276784";
  //닉네임으로 유저정보 얻기
 
 function getPuuid(){
@@ -189,7 +189,7 @@ $(document).ready(function(){
                         for(let n = 0; n<10; n++){
                             if(nickname == (data.info.participants[n].summonerName).trim()){
                                 if(data.info.participants[n].win){
-                                    $(`#game${i+1} > #table > #tr > .head >#WL`).text("승리");
+                                    $(`#game${i+1} > .head > #WL`).text("승리");
                                 }else{
                                     $(`#game${i+1} > .head > #WL`).text("패배");
                                 }

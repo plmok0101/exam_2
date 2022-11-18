@@ -2,26 +2,29 @@
 button{
     background-color: transparent
 }
-#champion{
-    width: 40px;
+.back{
+    background-color: white;
+}
+#chapion{
+    width: 30px;
 }
 #spell{
-    width: 20px;
+    width: 15px;
 }
 #userName{
-    width: 100px;
+    width: 150px;
 }
 #KDA{
-    width: 70PX;
+    width: 105PX;
 }
 #cs{
-    width: 40px;
+    width: 90px;
 }
 #damage{
-    width: 70px;
+    width: 105px;
 }
 #gold{
-    width: 70px;
+    width: 105px;
 }
 .box{
     position: relative;
@@ -38,15 +41,12 @@ button{
 }
 #search{
     position: absolute; right: 0px;
-    width: 20%;   height: 30px;
+    width: auto;   height: 100%;
     border: none;
 }
 .con{
     padding: 0 2% 0 2%;
     text-align: center;
-}
-.header{
-	overflow:hidden;
 }
 .cen{
 position: absolute; left: 50%;
@@ -83,7 +83,7 @@ transform: translate(-50%);
 }
 .game{
     padding: 20px 0px 20px 0px;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
     position: relative; top:50px;
 }
@@ -116,7 +116,7 @@ transform: translate(-50%);
     vertical-align: middle;
 }
 .table{
-    width: 100%; height: auto;
+    width: 80%; height: auto;
     text-align: center;
 }
 .textLeft{

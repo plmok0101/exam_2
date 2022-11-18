@@ -33,11 +33,21 @@
 
 <script id = "template" type="text/template">
     <div class = game id ="game">
-        <div class="head">
-            <span id = "WL">{wl}</span><span class ="gamemode">{gamemode}</span><span class="time">{time}</span><span class="date">{date}</span>
-        </div>
+        <span class="head">
+            <div id = "WL">{wl}</div><div class ="gamemode">{gamemode}</div><span class="time">{time}</span><span class="date">{date}</span>
+        </span>
+        <span>
         <div class="blue">
             <table class="table">
+                <colgroup>
+                    <col width ="30px">
+                    <col width ="15px">
+                    <col width ="150px">
+                    <col width ="105px">
+                    <col width ="90px">
+                    <col width ="105px">
+                    <col width ="105px">
+                </colgroup>
                 <thead>
                     <tr>
                         <th colspan = "3" class = "wl">{wlBlue}(블루팀)</th>
@@ -55,6 +65,15 @@
 
         <div class="red">
             <table class ="table">
+                <colgroup>
+                    <col width ="30px">
+                    <col width ="15px">
+                    <col width ="150px">
+                    <col width ="105px">
+                    <col width ="90px">
+                    <col width ="105px">
+                    <col width ="105px">
+                </colgroup>
                 <thead>
                     <tr>
                         <th colspan = "3">{wlRed}(레드팀)</th>
@@ -68,11 +87,12 @@
                 </tbody>
             </table>
         </div>
+        </span>
     </div>
 </script>
 <script id = "template2" type="text/template"> 
     <tr>
-        <td id="champion">{champion}</td>
+        <td id="champion"><div class = champ>{champion}<div></td>
         <td id= "spell">{spell1}{spell2}</td>
         <td class="textLeft" id="userName">{userName}</td>
         <td id="KDA">{k}{d}{a}</td>
@@ -81,10 +101,80 @@
         <td id="gold">{gold}</td>
     </tr>
 </script>
+
+
+
 <script id = "template3" type="text/template">
-    <div>
-        <div id=id>{wl}{time}</div>
-        <div id=chap>{champion}{spell1}{spell2}</div>
-        <div>{gamemode}{date}<div>
-    <div>
+    <div class = game id ="game">
+    <table id="table1">
+        <colgroup>
+            <col width ="20px">
+            <col width ="*">
+        </colgroup>
+        <tr id="tr1" class="back">
+            <td>
+               <span id="WL">{WL}</span> 
+            </td>
+            <td>
+                <div class="blue">
+                    <table class="table">
+                        <colgroup>
+                            <col width ="30px">
+                            <col width ="15px">
+                            <col width ="150px">
+                            <col width ="105px">
+                            <col width ="90px">
+                            <col width ="105px">
+                            <col width ="105px">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th colspan = "3" class = "wl">{wlBlue}(블루팀)</th>
+                                <th>kda</th>
+                                <th>cs</th>
+                                <th>딜</th>
+                                <th>골드</th>
+                            </tr>
+                        </thead>
+                        <tbody class = "blue2">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class ="back">
+                <span>{gamemode}</span>
+            </td>
+            <td>
+            <div class="red">
+                <table class ="table">
+                    <colgroup>
+                        <col width ="30px">
+                        <col width ="15px">
+                        <col width ="150px">
+                        <col width ="105px">
+                        <col width ="90px">
+                        <col width ="105px">
+                        <col width ="105px">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th colspan = "3">{wlRed}(레드팀)</th>
+                            <th>kda</th>
+                            <th>cs</th>
+                            <th>딜</th>
+                            <th>골드</th>
+                        </tr>
+                    </thead>
+                    <tbody class = "red2">
+
+                    </tbody>
+                </table>
+            </div>
+            </td>
+        </tr>
+    </table>
+    </div>
 </script>
