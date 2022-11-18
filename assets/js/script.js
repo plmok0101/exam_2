@@ -169,7 +169,7 @@ $(document).ready(function(){
                         if(btDay<10){
                             $(".con").append(
                                 html.replace(`id ="game"`, `id ="game${i+1}"`)
-                                     .replace(`{time}`,`${min}분${sec}초`)
+                                     .replace(`{time}`,`${min}:${sec}`)
                                      .replace(`{gamemode}`,abc)
                                      .replace(`{wlBlue}`,wlBlue)
                                      .replace(`{wlRed}`,wlRed)
@@ -179,7 +179,7 @@ $(document).ready(function(){
                         }else{
                             $(".con").append(
                                 html.replace(`id ="game"`, `id ="game${i+1}"`)
-                                     .replace(`{time}`,`${min}분${sec}초`)
+                                     .replace(`{time}`,`${min}:${sec}`)
                                      .replace(`{gamemode}`,abc)
                                      .replace(`{wlBlue}`,wlBlue)
                                      .replace(`{wlRed}`,wlRed)
@@ -190,8 +190,12 @@ $(document).ready(function(){
                             if(nickname == (data.info.participants[n].summonerName).trim()){
                                 if(data.info.participants[n].win){
                                     $(`#game${i+1} > .head > #WL`).text("승리");
+                                    $(`#game${i+1} > .head > #WL`).addClass(`winColor`);
+                                    $(`#game${i+1} > .head`).addClass(`WIN`);
                                 }else{
                                     $(`#game${i+1} > .head > #WL`).text("패배");
+                                    $(`#game${i+1} > .head > #WL`).addClass(`loseColor`);
+                                    $(`#game${i+1} > .head`).addClass(`LOSE`);
                                 }
                             }
                             spel1 = (data.info.participants[n].summoner1Id);

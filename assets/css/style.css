@@ -1,30 +1,59 @@
 @import "reset.css";
-button{
-    background-color: transparent
+/* 게임헤드 */
+#WL{
+    position:absolute; top:20%;
 }
-.back{
-    background-color: white;
+#gamemode{
+    position:absolute; top:40%;
 }
-#chapion{
+#time{
+    position:absolute; top:60%;
+}
+#date{
+    position:absolute; top:80%;
+}
+.WIN{
+    background-color: #b3cbff;
+    border: 5px double #b3cbff;
+}
+.winColor{
+    color: blue;
+}
+.LOSE{
+    background-color: #ff99a8;
+    border: 5px double  #ff99a8;
+}
+.loseColor{
+    color: red;
+}
+.head{
+    color: white;
+}
+/* 게임헤드 */
+/* 테이블 정보 */
+#champion{
     width: 30px;
 }
 #spell{
     width: 15px;
 }
-#userName{
-    width: 150px;
+.table{
+    height: 100%; width: 100%;
+    text-align: center;
+    position: relative;
+    table-layout: auto; 
 }
-#KDA{
-    width: 105PX;
+/* 테이블 정보 */
+.div1{
+    width: 10%;
+    display: table-cell;
+    position: relative;
 }
-#cs{
-    width: 90px;
+button{
+    background-color: transparent
 }
-#damage{
-    width: 105px;
-}
-#gold{
-    width: 105px;
+.back{
+    background-color: white;
 }
 .box{
     position: relative;
@@ -46,7 +75,7 @@ button{
 }
 .con{
     padding: 0 2% 0 2%;
-    text-align: center;
+    position: relative;
 }
 .cen{
 position: absolute; left: 50%;
@@ -58,10 +87,6 @@ transform: translate(-50%);
 .size{
     max-width: 100%;    height: auto;
     display: block;
-}
-.head{
-    background-color: white;
-    border: 5px double;
 }
 .section{
     position: relative;
@@ -76,6 +101,7 @@ transform: translate(-50%);
 .blue{
     background-color: #b3cbff;
     border: 5px double blue;
+    position: relative;
 }
 .red{
     background-color: #ff99a8;
@@ -83,9 +109,11 @@ transform: translate(-50%);
 }
 .game{
     padding: 20px 0px 20px 0px;
-    width: 80%;
-    margin: 0 auto;
     position: relative; top:50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
 }
 
 .loading{
@@ -115,24 +143,8 @@ transform: translate(-50%);
     display: table-cell;
     vertical-align: middle;
 }
-.table{
-    width: 80%; height: auto;
-    text-align: center;
-}
 .textLeft{
     text-align: left;
-}
-#WL{
-    width: 70px;
-    float: left
-}
-.gamemode{
-    width: 70px;
-    float: left;
-}
-.time{
-    width: 100px;
-    float: left;
 }
 .size2{
     width: auto;
@@ -145,21 +157,7 @@ transform: translate(-50%);
     border-radius: 30%;
     font-size: 12px;
 }
-.date{
-    width: 150px;
-    float: light;
-    text-align: right;
-}
-.borderBlue{
- border: blue solid;
-}
-#champion{
-    overflow:hidden;
-}
 @media (min-width: 700px){
-    .game{
-        width: 600px;    
-    }
     .box{
         width: 500px;
     }
