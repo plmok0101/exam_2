@@ -1,101 +1,126 @@
 let api_key = "RGAPI-19bfae8f-4db8-4c6f-89fb-878e47276784";
- //닉네임으로 유저정보 얻기
+let nickname;
+let game = [];
+let puuid;
+let a = 0;
+let resultblue;
+let resultred;
+let min;
+let gamemode;
+let sec;
+let wlBlue;
+let wlRed;
+let date;
+let spel1
+let spel2
+let nowDate;
+let now;
+let year;
+let month;
+let day;
+let stDate;
+let endDate;
+let btMs;
+let btDay;
 
-function getPuuid(){
-    $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
-        puuid = (data.puuid);
-    })
-}
-//최근10판 게임 ID얻기
-function getTotalID(){
-    $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=5&api_key=${api_key}`, function(data){
-        game = (data);
-    })    
-}
-
-//게임정보 가져오기
-function getGame(){
-    for(let i = 0; i < 10; i++){
-        $.getJSON("https://asia.api.riotgames.com/lol/match/v5/matches/" + game[i] + "?api_key=" + api_key,function(data){
-            for(let j = 0; j <10; j++){
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].championName));//챔피언
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].summonerName));//닉
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].kills));//킬
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].deaths));//데스
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].assists));//어시
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].totalMinionsKilled));//수정필요
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].totalDamageDealtToChampions));//딜량
-                $(".game" + [i+1] + " > .pick"+[j+1]+ " > .span" + n).text((data.info.participants[j].goldEarned));//획득골드
-            }
-        })
-    }
-}
-//div생성
-function createDiv(){
-    for (let i = 0; i < 10; i++){
-        $(".game"+[i]).after("<div class=\"game"+[i+1]+"\"></div>");
-        for(let j = 0; j <10; j++){
-            $(".game"+[i+1]).append("<div class=\"pick"+[j+1]+"\"></div>");  
-        }
-    }
-    for(let i = 0; i<10; i++){
-        for(let n = 0; n <8; n++){
-            $(".pick"+[i+1]).append("<span class=\"span"+[n+1]+"\"></span>");
-        }
-    }
-}
-
-function abc3(){
-    for (let j = 0; j<10; j++){
-        html.replace(`{champion${j+1}}`,data.info.participants[j].championName)
-            .replace(`{userName${j+1}}`,data.info.participants[j].summonerName)
-            .replace(`{k${j+1}}`,data.info.participants[j].kills+"/")
-            .replace(`{d${j+1}}`,data.info.participants[j].deaths+"/")
-            .replace(`{a${j+1}}`,data.info.participants[j].assists)
-            .replace(`{cs${j+1}}`,data.info.participants[j].totalMinionsKilled)
-            .replace(`{damage${j+1}}`,data.info.participants[j].totalDamageDealtToChampions)
-            .replace(`{gold${j+1}}`,data.info.participants[j].goldEarned)
-            .replace(`{gamemode}`,data.info.gameMode)
-            .replace(`{time}`,data.info.gameDuration+"s");
+function getgamemode(data){
+    switch(data){
+        case 420 :
+            data = "솔로랭크";
+            break;
+        case 430 :
+            data = "일반";
+            break;
+        case 440 :
+            data = "자유랭크";
+            break;
+        case 450 :
+            data = "킬바람";
+            break;
+        case 700 :
+            data = "격전";
+            break;
+        case 900 :
+            data = "URF";
+            break;
+        case 1020 :
+            data = "단일모드";
     };
+    return data;
+;}
+
+function getWl(data){
+    switch(data){
+        case true :
+            data = "승리";
+            break;
+        case false :
+            data = "패배";
+            break;
+    }
+    return data;
 };
 
-function test1234(){
-    $("#form").submit();
+function getSpell(data){
+    switch(data){
+        case 1 :
+            data = "Boost"
+        break;
+        case 3 :
+            data = "Exhaust"
+        break;
+        case 4 :
+            data = "Flash"
+        break;
+        case 6 :
+            data = "Haste"
+        break;
+        case 7 :
+            data = "heal"
+        break;
+        case 11 :
+            data = "smite"
+        break;
+        case 12 :
+            data = "Teleport"
+        break;
+        case 13 :
+            data = "Mana"
+        break;
+        case 14 :
+            data = "dot"
+        break;
+        case 21 :
+            data = "barrier"
+        break;
+        case 32 :
+            data = "snowball"
+        break;
+    }
+    return data;
 }
 
+function date2(data){
+    date = new Date(data);
+    now = new Date();
 
+    year = now.getFullYear();
+    month = now.getMonth()+1;
+    day = now.getDate();
+
+    stDate  = new Date(date.getFullYear(),date.getMonth()+1,date.getDate());
+    endDate = new Date(year, month, day);
+
+    btMs = endDate.getTime() - stDate.getTime();
+    btDay = btMs / (1000*60*60*24);
+    return btDay;
+}
 $(document).ready(function(){
+        let html = document.querySelector("#template").innerHTML;
+        let html2 = document.querySelector("#template2").innerHTML;
+
     $("header").css("height",$("#opgg").height());
-    let nickname;
-    let game = [];
-    let puuid;
-    let html = document.querySelector("#template").innerHTML;
-    let html2 = document.querySelector("#template2").innerHTML;
-    let a = 0;
-    let resultblue;
-    let resultred;
-    let min;
-    let abc;
-    let sec;
-    let wlBlue;
-    let wlRed;
-    let date;
-    let spel1
-    let spel2
-    let nowDate;
-    let now;
-    let year;
-    let month;
-    let day;
-    let stDate;
-    let endDae;
-    let btMs;
-    $("#plusBtn").click(function(){
-        a +=5;
-        $("#form").submit();
-    })
-    
+
     $("#form").submit(function(event){
         event.preventDefault();
         $(".loading").css("display", 'inline-block');
@@ -109,68 +134,23 @@ $(document).ready(function(){
                     $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
                         resultblue ="";
                         resultred = "";
-                        abc = (data.info.queueId);
+
                         min = parseInt((data.info.gameDuration)/60);
                         sec = parseInt((data.info.gameDuration)%60);
-                        wlBlue = (data.info.participants[0].win);
-                        wlRed = (data.info.participants[5].win); 
-                        switch(abc){
-                            case 420 :
-                                abc = "솔로랭크";
-                                break;
-                            case 430 :
-                                abc = "일반";
-                                break;
-                            case 440 :
-                                abc = "자유랭크";
-                                break;
-                            case 450 :
-                                abc = "킬바람";
-                                break;
-                            case 700 :
-                                abc = "격전";
-                                break;
-                            case 900 :
-                                abc = "URF";
-                                break;
-                            case 1020 :
-                                abc = "단일모드";
-                        };
-                        switch(wlBlue){
-                            case true :
-                                wlBlue = "승리";
-                                break;
-                            case false :
-                                wlBlue = "패배";
-                                break;
-                        }
-                        switch(wlRed){
-                            case true :
-                                wlRed = "승리";
-                                break;
-                            case false :
-                                wlRed = "패배";
-                                break;
-                        }
+
+                        wlBlue = getWl(data.info.participants[0].win);
+                        wlRed = getWl(data.info.participants[5].win); 
+                        gamemode = getgamemode((data.info.queueId));
+
                         date = new Date(data.info.gameStartTimestamp);
-                        now = new Date();
-
-                        year = now.getFullYear();
-                        month = now.getMonth()+1;
-                        day = now.getDate();
-
-                        stDate  = new Date(date.getFullYear(),date.getMonth()+1,date.getDate());
-                        endDate = new Date(year, month, day);
-
-                        btMs = endDate.getTime() - stDate.getTime();
-                        btDay = btMs / (1000*60*60*24);
+                        btDay = date2(data.info.gameStartTimestamp);
 
                         date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
                         if(btDay<10){
                             $(".con").append(
                                 html.replace(`id ="game"`, `id ="game${i+1}"`)
                                      .replace(`{time}`,`${min}:${sec}`)
-                                     .replace(`{gamemode}`,abc)
+                                     .replace(`{gamemode}`,gamemode)
                                      .replace(`{wlBlue}`,wlBlue)
                                      .replace(`{wlRed}`,wlRed)
                                      .replace(`{date}`,btDay+"일전")
@@ -180,7 +160,7 @@ $(document).ready(function(){
                             $(".con").append(
                                 html.replace(`id ="game"`, `id ="game${i+1}"`)
                                      .replace(`{time}`,`${min}:${sec}`)
-                                     .replace(`{gamemode}`,abc)
+                                     .replace(`{gamemode}`,gamemode)
                                      .replace(`{wlBlue}`,wlBlue)
                                      .replace(`{wlRed}`,wlRed)
                                      .replace(`{date}`,date)
@@ -198,78 +178,9 @@ $(document).ready(function(){
                                     $(`#game${i+1} > .head`).addClass(`LOSE`);
                                 }
                             }
-                            spel1 = (data.info.participants[n].summoner1Id);
-                            switch(spel1){
-                                case 1 :
-                                    spel1 = "Boost"
-                                break;
-                                case 3 :
-                                    spel1 = "Exhaust"
-                                break;
-                                case 4 :
-                                    spel1 = "Flash"
-                                break;
-                                case 6 :
-                                    spel1 = "Haste"
-                                break;
-                                case 7 :
-                                    spel1 = "heal"
-                                break;
-                                case 11 :
-                                    spel1 = "smite"
-                                break;
-                                case 12 :
-                                    spel1 = "Teleport"
-                                break;
-                                case 13 :
-                                    spel1 = "Mana"
-                                break;
-                                case 14 :
-                                    spel1 = "dot"
-                                break;
-                                case 21 :
-                                    spel1 = "barrier"
-                                break;
-                                case 32 :
-                                    spel1 = "snowball"
-                                break;
-                            }
-                            spel2 = (data.info.participants[n].summoner2Id);
-                            switch(spel2){
-                                case 1 :
-                                    spel2 = "Boost"
-                                break;
-                                case 3 :
-                                    spel2 = "Exhaust"
-                                break;
-                                case 4 :
-                                    spel2 = "Flash"
-                                break;
-                                case 6 :
-                                    spel2 = "Haste"
-                                break;
-                                case 7 :
-                                    spel2 = "heal"
-                                break;
-                                case 11 :
-                                    spel2 = "smite"
-                                break;
-                                case 12 :
-                                    spel2 = "Teleport"
-                                break;
-                                case 13 :
-                                    spel2 = "Mana"
-                                break;
-                                case 14 :
-                                    spel2 = "dot"
-                                break;
-                                case 21 :
-                                    spel2 = "barrier"
-                                break;
-                                case 32 :
-                                    spel2 = "snowball"
-                                break;
-                            }
+                            spel1 = getSpell(data.info.participants[n].summoner1Id);
+
+                            spel2 = getSpell(data.info.participants[n].summoner2Id);
                             if(n<5){
                                 resultblue += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
                                                    .replace(`{champLevel}`,data.info.participants[n].champLevel)
@@ -307,6 +218,14 @@ $(document).ready(function(){
         $("#plusBtn").css("display", "block");
         },500)
     })
+
+
+    $("#plusBtn").click(function(){
+        a +=5;
+        $("#form").submit();
+    })
+
+
 
     $("#btn").click(function(){
         if(a < 15){
