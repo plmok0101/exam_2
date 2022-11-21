@@ -1,4 +1,4 @@
-let api_key = "RGAPI-19bfae8f-4db8-4c6f-89fb-878e47276784";
+let api_key = "RGAPI-e8bf8b4d-19f3-4d11-ae08-6aa5a8a0ae78";
 let nickname;
 let game = [];
 let puuid;
@@ -115,22 +115,29 @@ function date2(data){
     btDay = btMs / (1000*60*60*24);
     return btDay;
 }
+
 $(document).ready(function(){
         let html = document.querySelector("#template").innerHTML;
         let html2 = document.querySelector("#template2").innerHTML;
 
     $("header").css("height",$("#opgg").height());
-
     $("#form").submit(function(event){
+        nickname = $("#nickname").val();
+        nickname =nickname.replace(/(\s*)/g, "").toUpperCase();
+        a = 0;
+        $('div.game').remove();
+        if(nickname === ""){
+            return false;
+        };
         event.preventDefault();
+        $("#plusBtn").css("display", "none");
         $(".loading").css("display", 'inline-block');
         setTimeout(function(){
-        nickname = $("#nickname").val();
         $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
             puuid = (data.puuid);
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
                 game = (data);
-                for(let i = 0+a ; i < 5+a ; i++){
+                for(let i = 0; i < 5; i++){
                     $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
                         resultblue ="";
                         resultred = "";
@@ -167,7 +174,7 @@ $(document).ready(function(){
                             );
                         }
                         for(let n = 0; n<10; n++){
-                            if(nickname == (data.info.participants[n].summonerName).trim()){
+                            if(nickname == (data.info.participants[n].summonerName).replace(/(\s*)/g, "").toUpperCase()){
                                 if(data.info.participants[n].win){
                                     $(`#game${i+1} > .head > #WL`).text("승리");
                                     $(`#game${i+1} > .head > #WL`).addClass(`winColor`);
@@ -222,17 +229,100 @@ $(document).ready(function(){
 
     $("#plusBtn").click(function(){
         a +=5;
-        $("#form").submit();
+        $(".loading").css("display", 'inline-block');
+        setTimeout(function(){
+            for(let i = 0+a ; i < 5+a ; i++){
+                $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
+                    resultblue ="";
+                    resultred = "";
+    
+                    min = parseInt((data.info.gameDuration)/60);
+                    sec = parseInt((data.info.gameDuration)%60);
+    
+                    wlBlue = getWl(data.info.participants[0].win);
+                    wlRed = getWl(data.info.participants[5].win); 
+                    gamemode = getgamemode((data.info.queueId));
+    
+                    date = new Date(data.info.gameStartTimestamp);
+                    btDay = date2(data.info.gameStartTimestamp);
+    
+                    date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
+                    if(btDay<10){
+                        $(".con").append(
+                            html.replace(`id ="game"`, `id ="game${i+1}"`)
+                                 .replace(`{time}`,`${min}:${sec}`)
+                                 .replace(`{gamemode}`,gamemode)
+                                 .replace(`{wlBlue}`,wlBlue)
+                                 .replace(`{wlRed}`,wlRed)
+                                 .replace(`{date}`,btDay+"일전")
+                                 .replace(`{Wl}`,)
+                        );
+                    }else{
+                        $(".con").append(
+                            html.replace(`id ="game"`, `id ="game${i+1}"`)
+                                 .replace(`{time}`,`${min}:${sec}`)
+                                 .replace(`{gamemode}`,gamemode)
+                                 .replace(`{wlBlue}`,wlBlue)
+                                 .replace(`{wlRed}`,wlRed)
+                                 .replace(`{date}`,date)
+                        );
+                    }
+                    for(let n = 0; n<10; n++){
+                        if(nickname == (data.info.participants[n].summonerName).trim()){
+                            if(data.info.participants[n].win){
+                                $(`#game${i+1} > .head > #WL`).text("승리");
+                                $(`#game${i+1} > .head > #WL`).addClass(`winColor`);
+                                $(`#game${i+1} > .head`).addClass(`WIN`);
+                            }else{
+                                $(`#game${i+1} > .head > #WL`).text("패배");
+                                $(`#game${i+1} > .head > #WL`).addClass(`loseColor`);
+                                $(`#game${i+1} > .head`).addClass(`LOSE`);
+                            }
+                        }
+                        spel1 = getSpell(data.info.participants[n].summoner1Id);
+    
+                        spel2 = getSpell(data.info.participants[n].summoner2Id);
+                        if(n<5){
+                            resultblue += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
+                                               .replace(`{champLevel}`,data.info.participants[n].champLevel)
+                                               .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                               .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                               .replace(`{userName}`,data.info.participants[n].summonerName)
+                                               .replace(`{k}`,data.info.participants[n].kills+"/")
+                                               .replace(`{d}`,data.info.participants[n].deaths+"/")
+                                               .replace(`{a}`,data.info.participants[n].assists)
+                                               .replace(`{cs}`,(data.info.participants[n].totalMinionsKilled) + (data.info.participants[n].neutralMinionsKilled))
+                                               .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
+                                               .replace(`{gold}`,data.info.participants[n].goldEarned);
+                        }else{
+                            resultred += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
+                                              .replace(`{champLevel}`,data.info.participants[n].champLevel)
+                                              .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                              .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                              .replace(`{userName}`,data.info.participants[n].summonerName)
+                                              .replace(`{k}`,data.info.participants[n].kills+"/")
+                                              .replace(`{d}`,data.info.participants[n].deaths+"/")
+                                              .replace(`{a}`,data.info.participants[n].assists)
+                                              .replace(`{cs}`,data.info.participants[n].totalMinionsKilled + (data.info.participants[n].neutralMinionsKilled))
+                                              .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
+                                              .replace(`{gold}`,data.info.participants[n].goldEarned);
+                       }
+                    }
+                    document.querySelector(`#game${i+1} .blue2`).innerHTML = resultblue;
+                    document.querySelector(`#game${i+1} .red2`).innerHTML = resultred; 
+                })
+            }
+            $(".loading").css("display", 'none');
+        },500)
+
     })
 
 
 
     $("#btn").click(function(){
-        if(a < 15){
-            let abcd = Date.now();
-            alert(abcd);
-        }
-        console.log(game[0]);
+       let abc00 = " hide on bush";
+       abc00.replace(/(\s*)/g, "");
+       console.log(abc00);
     })
 })
 
