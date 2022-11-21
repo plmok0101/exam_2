@@ -39,7 +39,7 @@
         </div>
         <div class="div2">
         <div class="blue">
-            <div class = "flex">
+            <div class = "flex pad">
                 <div class ="wl">{wlBlue}(블루팀)</div>
                 <div class ="KDA">KDA</div>
                 <div class ="CS">CS</div>
@@ -51,7 +51,7 @@
         </div>
 
         <div class="red">
-            <div class = "flex">
+            <div class = "flex pad">
                 <div class ="wl">{wlRed}(레드팀)</div>
                 <div class ="KDA">KDA</div>
                 <div class ="CS">CS</div>
@@ -66,11 +66,11 @@
 </script>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 <script id = "template2" type="text/template"> 
-    <div class="flex">
-        <div class="wl flex">
-            <div class ="flex">
+    <div class="flex letterSpacing">
+        <div class="wl flex ">
+            <div>
                 <div id="champion">{champion}</div>
-                <div id="spell">{spell1}{spell2}</div>
+                <div id="spell" class="flex">{spell1}{spell2}</div>
             </div>
         <div class="textLeft" id="userName">{userName}</div>
         </div>

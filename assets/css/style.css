@@ -1,16 +1,20 @@
 @import "reset.css";
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+body{
+    font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+} 
 /* 게임헤드 */
 #WL{
-    position:absolute; top:20%;
+    width: 100%;
 }
 #gamemode{
-    position:absolute; top:40%;
+    width: 100%;
 }
 #time{
-    position:absolute; top:60%;
+    width: 100%;
 }
 #date{
-    position:absolute; top:80%;
+    width: 100%;
 }
 .WIN{
     background-color: #b3cbff;
@@ -28,20 +32,21 @@
 }
 .head{
     color: white;
+    justify-content: center;
 }
 /* 게임헤드 */
 /* 테이블 정보 */
+.pad{
+    padding: 10px 0px 5px 0px;
+}
+.letterSpacing{
+    margin: 10px 0px 0px 0px;
+}
 #champion{
     width: 30px;
 }
 #spell{
     width: 15px;
-}
-.table{
-    height: 100%; width: 100%;
-    text-align: center;
-    position: relative;
-    table-layout: auto; 
 }
 /* 테이블 정보 */
 .flex{
@@ -62,13 +67,8 @@
 .gold{
     width: 15%;
 }
-.div1{
-    width: 10%;
-    display: table-cell;
-    position: relative;
-}
 .div2{
-    width: 90%;
+    width: 100%;
 }
 button{
     background-color: transparent
@@ -118,7 +118,6 @@ transform: translate(-50%);
     width: 500px;   height: 50px ;
     background-color: wheat;
 }
-
 .blue{
     background-color: #b3cbff;
     position: relative;
@@ -131,6 +130,7 @@ transform: translate(-50%);
     position: relative; top:50px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
     text-align: center;
 }
@@ -160,7 +160,7 @@ transform: translate(-50%);
 #userName{
     font-size: 13px;
     display: table-cell;
-    width: "*";
+    width: 100%;
 }
 .textLeft{
     text-align: left;
@@ -179,5 +179,13 @@ transform: translate(-50%);
 @media (min-width: 700px){
     .box{
         width: 500px;
+    }
+    .div1{
+        width: 50px;
+        flex-direction: column;
+    }
+    .game{
+        flex-direction: row;
+        align-items: center;
     }
 }
