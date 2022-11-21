@@ -268,7 +268,7 @@ $(document).ready(function(){
                         );
                     }
                     for(let n = 0; n<10; n++){
-                        if(nickname == (data.info.participants[n].summonerName).trim()){
+                        if(nickname == (data.info.participants[n].summonerName).replace(/(\s*)/g, "").toUpperCase()){
                             if(data.info.participants[n].win){
                                 $(`#game${i+1} > .head > #WL`).text("승리");
                                 $(`#game${i+1} > .head > #WL`).addClass(`winColor`);

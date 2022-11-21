@@ -34,6 +34,56 @@
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 <script id = "template" type="text/template">
     <div class = "game" id ="game">
+        <div class="head div1 flex">
+            <p id ="WL">{wl}</p><p id ="gamemode">{gamemode}</p><p id="time">{time}</p><p id="date">{date}</p>
+        </div>
+        <div class="div2">
+        <div class="blue">
+            <div class = "flex">
+                <div class ="wl">{wlBlue}(블루팀)</div>
+                <div class ="KDA">KDA</div>
+                <div class ="CS">CS</div>
+                <div class ="damage">딜</div>
+                <div class="gold">골드</div>
+            </div>
+            <div class = "blue2">
+            </div>
+        </div>
+
+        <div class="red">
+            <div class = "flex">
+                <div class ="wl">{wlRed}(레드팀)</div>
+                <div class ="KDA">KDA</div>
+                <div class ="CS">CS</div>
+                <div class ="damage">딜</div>
+                <div class="gold">골드</div>
+            </div>
+            <div class = "red2">
+            </div>
+        </div>
+        </div>
+    </div>
+</script>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<script id = "template2" type="text/template"> 
+    <div class="flex">
+        <div class="wl flex">
+            <div class ="flex">
+                <div id="champion">{champion}</div>
+                <div id="spell">{spell1}{spell2}</div>
+            </div>
+        <div class="textLeft" id="userName">{userName}</div>
+        </div>
+        <div id="KDA" class="KDA">{k}{d}{a}</div>
+        <div id="cs" class="CS">{cs}</div>
+        <div id="damage" class="damage">{damage}</div>
+        <div id="gold" class="gold">{gold}</div
+            >
+    </div>
+</script>
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------
+<script id = "template" type="text/template">
+    <div class = "game" id ="game">
         <div class="head div1">
             <p id ="WL">{wl}</p><p id ="gamemode">{gamemode}</p><p id="time">{time}</p><p id="date">{date}</p>
         </div>
@@ -91,7 +141,9 @@
         </div>
     </div>
 </script>
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+----->
+
+<!-- 
 <script id = "template2" type="text/template"> 
     <tr>
         <td id="champion">{champion}</td>
@@ -103,5 +155,4 @@
         <td id="gold">{gold}</td>
     </tr>
 </script>
-
-
+ -->

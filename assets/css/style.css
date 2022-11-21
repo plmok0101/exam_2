@@ -44,10 +44,31 @@
     table-layout: auto; 
 }
 /* 테이블 정보 */
+.flex{
+    display: flex;
+}
+.wl{
+    width:40%;
+}
+.KDA{
+    width: 20%;
+}
+.CS{
+    width: 10%;
+}
+.damage{
+    width: 15%;
+}
+.gold{
+    width: 15%;
+}
 .div1{
     width: 10%;
     display: table-cell;
     position: relative;
+}
+.div2{
+    width: 90%;
 }
 button{
     background-color: transparent
@@ -100,12 +121,10 @@ transform: translate(-50%);
 
 .blue{
     background-color: #b3cbff;
-    border: 5px double blue;
     position: relative;
 }
 .red{
     background-color: #ff99a8;
-    border: 5px double red;
 }
 .game{
     padding: 20px 0px 20px 0px;
@@ -141,7 +160,7 @@ transform: translate(-50%);
 #userName{
     font-size: 13px;
     display: table-cell;
-    vertical-align: middle;
+    width: "*";
 }
 .textLeft{
     text-align: left;
