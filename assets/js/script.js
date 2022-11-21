@@ -240,6 +240,7 @@ $(document).ready(function(){
                 getjosn3(i);
             }
             $(".loading").css("display", 'none');
+            $(".bot").insertAfter(".con");
         },500)
 
     })

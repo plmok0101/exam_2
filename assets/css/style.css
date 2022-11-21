@@ -159,7 +159,6 @@ transform: translate(-50%);
 }
 #userName{
     font-size: 13px;
-    display: table-cell;
     width: 100%;
 }
 .textLeft{
@@ -186,6 +185,8 @@ transform: translate(-50%);
     }
     .game{
         flex-direction: row;
-        align-items: center;
+        width: 600px;
+        position:relative; left: 50%;
+        transform: translate(-50%);
     }
 }
