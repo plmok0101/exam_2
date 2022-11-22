@@ -38,29 +38,27 @@
             <p id ="WL">{wl}</p><p id ="gamemode">{gamemode}</p><p id="time">{time}</p><p id="date">{date}</p>
         </div>
         <div class="div2">
-        <div class="blue">
-            <div class = "flex pad">
-                <div class ="wl">{wlBlue}(블루팀)</div>
-                <div class ="KDA">KDA</div>
-                <div class ="CS">CS</div>
-                <div class ="damage">딜</div>
-                <div class="gold">골드</div>
+            <div class="team1">
+                <div class = "flex pad">
+                    <div class ="wl">{team1}</div>
+                    <div class ="KDA">KDA</div>
+                    <div class ="CS">CS</div>
+                    <div class ="damage">딜</div>
+                    <div class="gold">골드</div>
+                </div>
+                <div class = "team1_2"></div>
             </div>
-            <div class = "blue2">
+            <div class="team2">
+                <div class = "flex pad">
+                    <div class ="wl">{team2}</div>
+                    <div class ="KDA">KDA</div>
+                    <div class ="CS">CS</div>
+                    <div class ="damage">딜</div>
+                    <div class="gold">골드</div>
+                </div>
+                <div class = "team2_2"></div>
             </div>
-        </div>
-
-        <div class="red">
-            <div class = "flex pad">
-                <div class ="wl">{wlRed}(레드팀)</div>
-                <div class ="KDA">KDA</div>
-                <div class ="CS">CS</div>
-                <div class ="damage">딜</div>
-                <div class="gold">골드</div>
-            </div>
-            <div class = "red2">
-            </div>
-        </div>
+            <button class="teamPlusBtn" id ="teamPlusBtn">버튼</button>
         </div>
     </div>
 </script>
@@ -72,7 +70,10 @@
                 <div id="champion">{champion}</div>
                 <div id="spell" class="flex">{spell1}{spell2}</div>
             </div>
-        <div class="textLeft" id="userName">{userName}</div>
+            <div class="flex abc">
+                <div class="textLeft" id="userName">{userName}</div>
+                <div class="item flex">{item1}{item2}{item3}{item4}{item5}{item6}{ward}</div>
+            </div>
         </div>
         <div id="KDA" class="KDA">{k}{d}{a}</div>
         <div id="cs" class="CS">{cs}</div>

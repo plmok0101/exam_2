@@ -3,6 +3,18 @@
 body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 } 
+.item{
+    width: 20px;
+}
+.abc{
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+.teamPlusBtn{
+    width: 100%;
+    background-color: white;
+}
 /* 게임헤드 */
 #WL{
     width: 100%;
@@ -18,14 +30,12 @@ body{
 }
 .WIN{
     background-color: #b3cbff;
-    border: 5px double #b3cbff;
 }
 .winColor{
     color: blue;
 }
 .LOSE{
     background-color: #ff99a8;
-    border: 5px double  #ff99a8;
 }
 .loseColor{
     color: red;
@@ -118,12 +128,8 @@ transform: translate(-50%);
     width: 500px;   height: 50px ;
     background-color: wheat;
 }
-.blue{
-    background-color: #b3cbff;
-    position: relative;
-}
-.red{
-    background-color: #ff99a8;
+.team2{
+    display: none;
 }
 .game{
     padding: 20px 0px 20px 0px;
