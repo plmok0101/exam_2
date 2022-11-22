@@ -443,81 +443,182 @@ $(document).ready(function(){
     })
 })
 $(document).on("click","#teamPlusBtn1",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game1 > .div2 > .team2").toggle();
 })
 $(document).on("click","#teamPlusBtn2",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game2 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn3",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game3 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn4",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game4 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn5",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game5 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn6",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game6 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn7",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game7 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn8",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game8 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn9",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game9 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn10",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game10 > .div2 > .team2").toggle();
 })
 
+
 $(document).on("click","#teamPlusBtn11",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game11 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn12",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game12 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn13",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game13 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn14",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game14 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn15",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game15 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn16",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game16 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn17",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game17 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn18",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game18 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn19",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game19 > .div2 > .team2").toggle();
 })
 
 $(document).on("click","#teamPlusBtn20",function(){
+        if($(this).text() == "+"){
+        $(this).text('-');
+    }else{
+        $(this).text("+")
+    }
     $("#game20 > .div2 > .team2").toggle();
 })
 
