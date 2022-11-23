@@ -12,10 +12,13 @@
 
 <body class="background">
     <header>
-        <img src="assets/image/op.gg.jpg" class="cen size" id="opgg"/>
+        <img src="assets/image/op.gg.png" class="cen size" id="opgg"/>
     </header>
     <button type="button" id="btn" >test</button>
     <section class="section">
+        <div class="abcd">
+            <div></div>
+        </div>
         <div class="con" >
             <form id = "form">
                 <div class="box cen">
@@ -40,21 +43,13 @@
         <div class="div2">
             <div class="team1">
                 <div class = "flex pad">
-                    <div class ="wl">{team1}</div>
-                    <div class ="KDA">KDA</div>
-                    <div class ="CS">CS</div>
-                    <div class ="damage">딜</div>
-                    <div class="gold">골드</div>
+                    <div class ="wl wdMax">{team1}</div>
                 </div>
                 <div class = "team1_2"></div>
             </div>
             <div class="team2">
                 <div class = "flex pad">
-                    <div class ="wl">{team2}</div>
-                    <div class ="KDA">KDA</div>
-                    <div class ="CS">CS</div>
-                    <div class ="damage">딜</div>
-                    <div class="gold">골드</div>
+                    <div class ="wl wdMax">{team2}</div>
                 </div>
                 <div class = "team2_2"></div>
             </div>
@@ -64,24 +59,33 @@
 </script>
 <!--------------템플릿2------------------------------------------------------------------------------------------------------------------------------------------------->
 <script id = "template2" type="text/template"> 
-    <div class="flex letterSpacing">
-        <div class="wl flex">
+    <div class="td flex">
+        <div class="flex">
+            <div class="champion">{champion}</div>
+            <div class="spell flex">{spell1}{spell2}</div>
+            <div class = "perk">{perk}{perkStyle}</div>
+        </div>
+        <div class="flex flexColum wdMax chamKda">
+            <div class="userName textLeft">{userName}</div>
+            <div class="kda textLeft"><span>{k} / {d} / {a}<span><span class ="kda2">{kda}<span></div>
+        </div>
+        <div class="flex flexColum">
             <div>
-                <div class="champion">{champion}</div>
-                <div class="spell flex">{spell1}{spell2}</div>
-            </div>
-            <div class="flex abc">
-                <div class="flex">
-                    <div class = "perk">{perk}{perkStyle}</div>
-                    <div class="userName textLeft">{userName}</div>
+                <div class="flex ri">
+                    <div class="item">{item1}</div>
+                    <div class="item">{item2}</div>
+                    <div class="item">{item3}</div>
+                    <div class="item">{item4}</div>
+                    <div class="item">{item5}</div>
+                    <div class="item">{item6}</div>
+                    <div class="item">{ward}</div>
                 </div>
-                <div class="item flex">{item1}{item2}{item3}{item4}{item5}{item6}{ward}</div>
+            </div>
+            <div class="flex wdMax flexBtw">
+                <div class="CS"><span>{cs}{minCs} / <span><span class="gold">{gold}</span> </div>
+                
+                <div class="damage">{damage}</div>
             </div>
         </div>
-        <div class="KDA">{k}{d}{a}</div>
-        <div class="CS">{cs}</div>
-        <div class="damage">{damage}</div>
-        <div class="gold">{gold}</div
-            >
     </div>
 </script>

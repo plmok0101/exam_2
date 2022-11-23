@@ -24,6 +24,15 @@ let endDate;
 let btMs;
 let btDay;
 let teamId;
+let kda;
+let minCs;
+let gold;
+let damage;
+
+function KDA(k,d,a){
+    return (k+a)/d.toFixed(2);
+}
+
 
 function ajax3(i){
     html = document.querySelector("#template").innerHTML;
@@ -39,7 +48,7 @@ function ajax3(i){
     
             min = parseInt((data.info.gameDuration)/60);
             sec = parseInt((data.info.gameDuration)%60);
-    
+            console
             wlBlue = getWl(data.info.participants[0].win);
             wlRed = getWl(data.info.participants[5].win); 
             gamemode = getgamemode((data.info.queueId));
@@ -55,7 +64,7 @@ function ajax3(i){
                          .replace(`{gamemode}`,gamemode)
                          .replace(`{date}`,btDay+"일전")
                          .replace(`{Wl}`,)
-                         .replace(`id ="teamPlusBtn"`,`id ="teamPlusBtn${i+1}"`)
+                         .replace(`class ="teamPlusBtn"`,`class ="teamPlusBtn${i+1}"`)
                 );
             }else{
                 $(".con").append(
@@ -99,12 +108,15 @@ function ajax3(i){
                 item5 = getitem(data.info.participants[n].item4);
                 item6 = getitem(data.info.participants[n].item5);
                 ward = getitem(data.info.participants[n].item6);
-    
+                kda = ((data.info.participants[n].kills + data.info.participants[n].assists)/data.info.participants[n].deaths).toFixed(2);
+                minCs = ((data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled)/min).toFixed(1);
+                gold  = (data.info.participants[n].goldEarned/1000).toFixed(1);
+                damage = (data.info.participants[n].totalDamageDealtToChampions/1000).toFixed(1);
                 if(n<5){
-                    team1 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
+                    team1 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size border30"/>`)
                                        .replace(`{champLevel}`,data.info.participants[n].champLevel)
-                                       .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                       .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                       .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/>`)
+                                       .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/>`)
                                        .replace(`{perk}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perk/${data.info.participants[n].perks.styles[0].selections[0].perk}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
                                        .replace(`{perkStyle}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/${data.info.participants[n].perks.styles[1].style}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
                                        .replace(`{userName}`,data.info.participants[n].summonerName)
@@ -115,17 +127,19 @@ function ajax3(i){
                                        .replace(`{item5}`,item5)
                                        .replace(`{item6}`,item6)
                                        .replace(`{ward}`,ward)
-                                       .replace(`{k}`,data.info.participants[n].kills+"/")
-                                       .replace(`{d}`,data.info.participants[n].deaths+"/")
+                                       .replace(`{k}`,data.info.participants[n].kills)
+                                       .replace(`{d}`,data.info.participants[n].deaths)
                                        .replace(`{a}`,data.info.participants[n].assists)
+                                       .replace(`{kda}`,`${kda}:1`)
                                        .replace(`{cs}`,(data.info.participants[n].totalMinionsKilled) + (data.info.participants[n].neutralMinionsKilled))
-                                       .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
-                                       .replace(`{gold}`,data.info.participants[n].goldEarned);
+                                       .replace(`{minCs}`,`(${minCs})`)
+                                       .replace(`{damage}`,`${damage}K`,)
+                                       .replace(`{gold}`,`${gold}K`);
                 }else{
-                    team2 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
+                    team2 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size border30"/>`)
                                       .replace(`{champLevel}`,data.info.participants[n].champLevel)
-                                      .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                      .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                      .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/>`)
+                                      .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/>`)
                                       .replace(`{perk}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perk/${data.info.participants[n].perks.styles[0].selections[0].perk}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
                                       .replace(`{perkStyle}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/${data.info.participants[n].perks.styles[1].style}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
                                       .replace(`{userName}`,data.info.participants[n].summonerName)
@@ -136,12 +150,14 @@ function ajax3(i){
                                       .replace(`{item5}`,item5)
                                       .replace(`{item6}`,item6)
                                       .replace(`{ward}`,ward)
-                                      .replace(`{k}`,data.info.participants[n].kills+"/")
-                                      .replace(`{d}`,data.info.participants[n].deaths+"/")
+                                      .replace(`{k}`,data.info.participants[n].kills)
+                                      .replace(`{d}`,data.info.participants[n].deaths)
                                       .replace(`{a}`,data.info.participants[n].assists)
-                                      .replace(`{cs}`,data.info.participants[n].totalMinionsKilled + (data.info.participants[n].neutralMinionsKilled))
-                                      .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
-                                      .replace(`{gold}`,data.info.participants[n].goldEarned);
+                                      .replace(`{kda}`,`${kda}:1`)
+                                      .replace(`{cs}`,(data.info.participants[n].totalMinionsKilled) + (data.info.participants[n].neutralMinionsKilled))
+                                      .replace(`{minCs}`,`(${minCs})`)
+                                      .replace(`{damage}`,`${damage}K`,)
+                                      .replace(`{gold}`,`${gold}K`);
                }
             }
             if(teamId == 100){

@@ -3,13 +3,34 @@
 body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 } 
+.wdMax{
+    width: 100%;
+}
+.border30{
+    border-radius: 30%;
+}
 .item{
     width: 20px;
 }
-.abc{
-    flex-direction: column;
+.chamKda{
+    padding-left: 10px;
+}
+.td{
+    border-bottom: 1px solid gray;
+}
+.flexBtw{
     justify-content: space-between;
-    width: 100%;
+}
+.kda{
+    font-size: 0.9rem;
+    color: white;
+}
+.kda2,.CS,.gold,.damage{ 
+    font-size: 0.7rem;
+    color: gray;
+}
+.flexColum{
+    flex-direction: column;
 }
 .teamPlusBtn{
     width: 100%;
@@ -17,6 +38,11 @@ body{
 }
 .perk{
     width: 15px;
+    padding: 0px 2px 0px 2px;
+}
+.ri{
+    justify-content: flex-end;
+    float: right
 }
 /* 게임헤드 */
 .WL{
@@ -51,33 +77,22 @@ body{
 .pad{
     padding: 10px 0px 5px 0px;
 }
-.letterSpacing{
-    margin: 10px 0px 0px 0px;
+.td{
+    padding: 10px 2px 10px 2px;
 }
 .champion{
     width: 30px;
+    padding: 0px 2px 0px 2px;
+    border-radius: 10px;
 }
 .spell{
     width: 15px;
+    flex-direction: column;
+    padding: 0px 2px 0px 2px;
 }
 /* 테이블 정보 */
 .flex{
     display: flex;
-}
-.wl{
-    width:40%;
-}
-.KDA{
-    width: 20%;
-}
-.CS{
-    width: 10%;
-}
-.damage{
-    width: 15%;
-}
-.gold{
-    width: 15%;
 }
 .div2{
     width: 100%;
@@ -134,9 +149,9 @@ transform: translate(-50%);
     display: none;
 }
 .game{
-    padding: 20px 0px 20px 0px;
-    position: relative; top:50px;
+    position: relative; top:70px;
     display: flex;
+    padding: 2px 0px 2px 0px;
     justify-content: center;
     flex-direction: column;
     width: 100%;
@@ -166,8 +181,9 @@ transform: translate(-50%);
     background-color: white;
 }
 .userName{
-    font-size: 13px;
+    font-size: 0.9rem;
     width: 100%;
+    color: white;
 }
 .textLeft{
     text-align: left;
