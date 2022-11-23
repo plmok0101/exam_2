@@ -107,7 +107,7 @@ function ajax3(i){
                 item4 = getitem(data.info.participants[n].item3);
                 item5 = getitem(data.info.participants[n].item4);
                 item6 = getitem(data.info.participants[n].item5);
-                ward = getitem(data.info.participants[n].item6);
+                ward = getward(data.info.participants[n].item6);
                 kda = ((data.info.participants[n].kills + data.info.participants[n].assists)/data.info.participants[n].deaths).toFixed(2);
                 minCs = ((data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled)/min).toFixed(1);
                 gold  = (data.info.participants[n].goldEarned/1000).toFixed(1);
@@ -255,6 +255,14 @@ function getitem(data){
         return ``;
     }else{
         return `<img src="https://opgg-static.akamaized.net/meta/images/lol/item/${data}.png?image=q_auto,f_webp,w_44&v=1669025525721" class="size border30"/>`;
+    };
+};
+
+function getward(data){
+    if(data == 0){
+        return ``;
+    }else{
+        return `<img src="https://opgg-static.akamaized.net/meta/images/lol/item/${data}.png?image=q_auto,f_webp,w_44&v=1669025525721" class="size border50"/>`;
     };
 };
 
