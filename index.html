@@ -31,11 +31,11 @@
     <button type="button" id="plusBtn" >더보기</button>
     </div>
 </body>
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!----------템플릿1----------------------------------------------------------------------------------------------------------------------------------------------------->
 <script id = "template" type="text/template">
     <div class = "game" id ="game">
         <div class="head div1 flex">
-            <p id ="WL">{wl}</p><p id ="gamemode">{gamemode}</p><p id="time">{time}</p><p id="date">{date}</p>
+            <p class ="WL">{wl}</p><p class ="gamemode">{gamemode}</p><p class="time">{time}</p><p class="date">{date}</p>
         </div>
         <div class="div2">
             <div class="team1">
@@ -58,102 +58,30 @@
                 </div>
                 <div class = "team2_2"></div>
             </div>
-            <button class="teamPlusBtn" id ="teamPlusBtn">+</button>
+            <button class="teamPlusBtn" id ="teamPlusBtn">˅</button>
         </div>
     </div>
 </script>
-<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!--------------템플릿2------------------------------------------------------------------------------------------------------------------------------------------------->
 <script id = "template2" type="text/template"> 
     <div class="flex letterSpacing">
-        <div class="wl flex ">
+        <div class="wl flex">
             <div>
-                <div id="champion">{champion}</div>
-                <div id="spell" class="flex">{spell1}{spell2}</div>
+                <div class="champion">{champion}</div>
+                <div class="spell flex">{spell1}{spell2}</div>
             </div>
             <div class="flex abc">
-                <div class="textLeft" id="userName">{userName}</div>
+                <div class="flex">
+                    <div class = "perk">{perk}{perkStyle}</div>
+                    <div class="userName textLeft">{userName}</div>
+                </div>
                 <div class="item flex">{item1}{item2}{item3}{item4}{item5}{item6}{ward}</div>
             </div>
         </div>
-        <div id="KDA" class="KDA">{k}{d}{a}</div>
-        <div id="cs" class="CS">{cs}</div>
-        <div id="damage" class="damage">{damage}</div>
-        <div id="gold" class="gold">{gold}</div
+        <div class="KDA">{k}{d}{a}</div>
+        <div class="CS">{cs}</div>
+        <div class="damage">{damage}</div>
+        <div class="gold">{gold}</div
             >
     </div>
 </script>
-<!----------------------------------------------------------------------------------------------------------------------------------------------------------------
-<script id = "template" type="text/template">
-    <div class = "game" id ="game">
-        <div class="head div1">
-            <p id ="WL">{wl}</p><p id ="gamemode">{gamemode}</p><p id="time">{time}</p><p id="date">{date}</p>
-        </div>
-        <div class="div2">
-        <div class="blue">
-            <table class="table">
-                <colgroup>
-                <col width="30px">
-                <col width="15px">
-                <col width="*">
-                <col width="*">
-                <col width="*">
-                <col width="*">
-                <col width="*">
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th colspan = "3" class = "wl">{wlBlue}(블루팀)</th>
-                        <th>kda</th>
-                        <th>cs</th>
-                        <th>딜</th>
-                        <th>골드</th>
-                    </tr>
-                </thead>
-                <tbody class = "blue2">
-                    
-                </tbody>
-            </table>
-        </div>
-
-        <div class="red">
-            <table class ="table">
-                <colgroup>
-                    <col width="30px">
-                    <col width="15px">
-                    <col width="*">
-                    <col width="*">
-                    <col width="*">
-                    <col width="*">
-                    <col width="*">
-                    </colgroup>
-                <thead>
-                    <tr>
-                        <th colspan = "3">{wlRed}(레드팀)</th>
-                        <th>kda</th>
-                        <th>cs</th>
-                        <th>딜</th>
-                        <th>골드</th>
-                    </tr>
-                </thead>
-                <tbody class = "red2">
-                </tbody>
-            </table>
-        </div>
-        </div>
-    </div>
-</script>
------>
-
-<!-- 
-<script id = "template2" type="text/template"> 
-    <tr>
-        <td id="champion">{champion}</td>
-        <td id="spell">{spell1}{spell2}</td>
-        <td class="textLeft" id="userName">{userName}</td>
-        <td id="KDA">{k}{d}{a}</td>
-        <td id="cs">{cs}</td>
-        <td id="damage">{damage}</td>
-        <td id="gold">{gold}</td>
-    </tr>
-</script>
- -->

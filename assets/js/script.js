@@ -1,4 +1,4 @@
-let api_key = "RGAPI-8e58be1f-8a0b-4a2e-8bad-4f2908b8decd";
+const api_key = "RGAPI-7a918bbb-6963-4fed-b7a0-ab9554d7a7c3";
 let nickname;
 let game = [];
 let puuid;
@@ -72,18 +72,18 @@ function ajax3(i){
                     teamOne = getTeam(teamId);
                     teamTwo = getTeam2(teamId);
                     if(data.info.participants[n].win){
-                        $(`#game${i+1} > .head > #WL`).text("승리");
+                        $(`#game${i+1} > .head > .WL`).text("승리");
                         $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`승리(${teamOne})`);
                         $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).text(`패배(${teamTwo})`);
-                        $(`#game${i+1} > .head > #WL`).addClass(`winColor`);
+                        $(`#game${i+1} > .head > .WL`).addClass(`winColor`);
                         $(`#game${i+1} > .div2 > .team1`).addClass(`WIN`);
                         $(`#game${i+1} > .div2 > .team2`).addClass(`LOSE`);
                         $(`#game${i+1} > .head`).addClass(`WIN`);
                     }else{
-                        $(`#game${i+1} > .head > #WL`).text("패배");
+                        $(`#game${i+1} > .head > .WL`).text("패배");
                         $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`패배(${teamOne})`);
                         $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).text(`승리(${teamTwo})`);
-                        $(`#game${i+1} > .head > #WL`).addClass(`loseColor`);
+                        $(`#game${i+1} > .head > .WL`).addClass(`loseColor`);
                         $(`#game${i+1} > .div2 > .team1`).addClass(`LOSE`);
                         $(`#game${i+1} > .div2 > .team2`).addClass(`WIN`);
                         $(`#game${i+1} > .head`).addClass(`LOSE`);
@@ -105,6 +105,8 @@ function ajax3(i){
                                        .replace(`{champLevel}`,data.info.participants[n].champLevel)
                                        .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
                                        .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                       .replace(`{perk}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perk/${data.info.participants[n].perks.styles[0].selections[0].perk}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
+                                       .replace(`{perkStyle}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/${data.info.participants[n].perks.styles[1].style}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
                                        .replace(`{userName}`,data.info.participants[n].summonerName)
                                        .replace(`{item1}`,item1)
                                        .replace(`{item2}`,item2)
@@ -124,6 +126,8 @@ function ajax3(i){
                                       .replace(`{champLevel}`,data.info.participants[n].champLevel)
                                       .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
                                       .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
+                                      .replace(`{perk}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perk/${data.info.participants[n].perks.styles[0].selections[0].perk}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
+                                      .replace(`{perkStyle}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/${data.info.participants[n].perks.styles[1].style}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`)
                                       .replace(`{userName}`,data.info.participants[n].summonerName)
                                       .replace(`{item1}`,item1)
                                       .replace(`{item2}`,item2)
@@ -268,126 +272,6 @@ function getTeam2(data){
         return "레드팀"
     }
 }
-function getjosn3(i){
-    html = document.querySelector("#template").innerHTML;
-    html2 = document.querySelector("#template2").innerHTML;
-    $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,function(data){
-        team1 ="";
-        team2 = "";
-
-        min = parseInt((data.info.gameDuration)/60);
-        sec = parseInt((data.info.gameDuration)%60);
-
-        wlBlue = getWl(data.info.participants[0].win);
-        wlRed = getWl(data.info.participants[5].win); 
-        gamemode = getgamemode((data.info.queueId));
-
-        date = new Date(data.info.gameStartTimestamp);
-        btDay = date2(data.info.gameStartTimestamp);
-
-        date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
-        if(btDay<10){
-            $(".con").append(
-                html.replace(`id ="game"`, `id ="game${i+1}"`)
-                     .replace(`{time}`,`${min}:${sec}`)
-                     .replace(`{gamemode}`,gamemode)
-                     .replace(`{date}`,btDay+"일전")
-                     .replace(`{Wl}`,)
-                     .replace(`id ="teamPlusBtn"`,`id ="teamPlusBtn${i+1}"`)
-            );
-        }else{
-            $(".con").append(
-                html.replace(`id ="game"`, `id ="game${i+1}"`)
-                     .replace(`{time}`,`${min}:${sec}`)
-                     .replace(`{gamemode}`,gamemode)
-                     .replace(`{date}`,date)
-                     .replace(`class ="teamPlusBtn"`,`class ="teamPlusBtn${i+1}"`)
-            );
-        }
-        for(let n = 0; n<10; n++){
-            if(nickname == (data.info.participants[n].summonerName).replace(/(\s*)/g, "").toUpperCase()){
-                teamId = (data.info.participants[n].teamId);
-                teamOne = getTeam(teamId);
-                teamTwo = getTeam2(teamId);
-                if(data.info.participants[n].win){
-                    $(`#game${i+1} > .head > #WL`).text("승리");
-                    $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`승리(${teamOne})`);
-                    $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).text(`패배(${teamTwo})`);
-                    $(`#game${i+1} > .head > #WL`).addClass(`winColor`);
-                    $(`#game${i+1} > .div2 > .team1`).addClass(`WIN`);
-                    $(`#game${i+1} > .div2 > .team2`).addClass(`LOSE`);
-                    $(`#game${i+1} > .head`).addClass(`WIN`);
-                }else{
-                    $(`#game${i+1} > .head > #WL`).text("패배");
-                    $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`패배(${teamOne})`);
-                    $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).text(`승리(${teamTwo})`);
-                    $(`#game${i+1} > .head > #WL`).addClass(`loseColor`);
-                    $(`#game${i+1} > .div2 > .team1`).addClass(`LOSE`);
-                    $(`#game${i+1} > .div2 > .team2`).addClass(`WIN`);
-                    $(`#game${i+1} > .head`).addClass(`LOSE`);
-                }
-            }
-            spel1 = getSpell(data.info.participants[n].summoner1Id);
-            spel2 = getSpell(data.info.participants[n].summoner2Id);
-
-            item1 = getitem(data.info.participants[n].item0);
-            item2 = getitem(data.info.participants[n].item1);
-            item3 = getitem(data.info.participants[n].item2);
-            item4 = getitem(data.info.participants[n].item3);
-            item5 = getitem(data.info.participants[n].item4);
-            item6 = getitem(data.info.participants[n].item5);
-            ward = getitem(data.info.participants[n].item6);
-
-            if(n<5){
-                team1 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
-                                   .replace(`{champLevel}`,data.info.participants[n].champLevel)
-                                   .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                   .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                   .replace(`{userName}`,data.info.participants[n].summonerName)
-                                   .replace(`{item1}`,item1)
-                                   .replace(`{item2}`,item2)
-                                   .replace(`{item3}`,item3)
-                                   .replace(`{item4}`,item4)
-                                   .replace(`{item5}`,item5)
-                                   .replace(`{item6}`,item6)
-                                   .replace(`{ward}`,ward)
-                                   .replace(`{k}`,data.info.participants[n].kills+"/")
-                                   .replace(`{d}`,data.info.participants[n].deaths+"/")
-                                   .replace(`{a}`,data.info.participants[n].assists)
-                                   .replace(`{cs}`,(data.info.participants[n].totalMinionsKilled) + (data.info.participants[n].neutralMinionsKilled))
-                                   .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
-                                   .replace(`{gold}`,data.info.participants[n].goldEarned);
-            }else{
-                team2 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size"/>`)
-                                  .replace(`{champLevel}`,data.info.participants[n].champLevel)
-                                  .replace(`{spell1}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                  .replace(`{spell2}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size"/>`)
-                                  .replace(`{userName}`,data.info.participants[n].summonerName)
-                                  .replace(`{item1}`,item1)
-                                  .replace(`{item2}`,item2)
-                                  .replace(`{item3}`,item3)
-                                  .replace(`{item4}`,item4)
-                                  .replace(`{item5}`,item5)
-                                  .replace(`{item6}`,item6)
-                                  .replace(`{ward}`,ward)
-                                  .replace(`{k}`,data.info.participants[n].kills+"/")
-                                  .replace(`{d}`,data.info.participants[n].deaths+"/")
-                                  .replace(`{a}`,data.info.participants[n].assists)
-                                  .replace(`{cs}`,data.info.participants[n].totalMinionsKilled + (data.info.participants[n].neutralMinionsKilled))
-                                  .replace(`{damage}`,data.info.participants[n].totalDamageDealtToChampions)
-                                  .replace(`{gold}`,data.info.participants[n].goldEarned);
-           }
-        }
-        if(teamId == 100){
-            document.querySelector(`#game${i+1} .team1_2`).innerHTML = team1;
-            document.querySelector(`#game${i+1} .team2_2`).innerHTML = team2; 
-        }
-        if(teamId == 200){
-            document.querySelector(`#game${i+1} .team1_2`).innerHTML = team2;
-            document.querySelector(`#game${i+1} .team2_2`).innerHTML = team1; 
-        }
-    })
-}
 
 $(document).ready(function(){
         let html = document.querySelector("#template").innerHTML;
@@ -442,183 +326,12 @@ $(document).ready(function(){
         console.log(game[0])
     })
 })
-$(document).on("click","#teamPlusBtn1",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game1 > .div2 > .team2").toggle();
-})
-$(document).on("click","#teamPlusBtn2",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game2 > .div2 > .team2").toggle();
-})
 
-$(document).on("click","#teamPlusBtn3",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
+$(document).on("click",".teamPlusBtn",function(event){
+        if($(this).text() == "˅"){
+        $(this).text('˄');
     }else{
-        $(this).text("+")
+        $(this).text("˅")
     }
-    $("#game3 > .div2 > .team2").toggle();
+    $(this).closest(".div2").find(".team2").toggle();
 })
-
-$(document).on("click","#teamPlusBtn4",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game4 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn5",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game5 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn6",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game6 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn7",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game7 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn8",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game8 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn9",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game9 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn10",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game10 > .div2 > .team2").toggle();
-})
-
-
-$(document).on("click","#teamPlusBtn11",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game11 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn12",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game12 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn13",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game13 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn14",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game14 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn15",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game15 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn16",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game16 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn17",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game17 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn18",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game18 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn19",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game19 > .div2 > .team2").toggle();
-})
-
-$(document).on("click","#teamPlusBtn20",function(){
-        if($(this).text() == "+"){
-        $(this).text('-');
-    }else{
-        $(this).text("+")
-    }
-    $("#game20 > .div2 > .team2").toggle();
-})
-

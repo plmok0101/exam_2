@@ -15,17 +15,19 @@ body{
     width: 100%;
     background-color: white;
 }
+.perk{
+    width: 15px;
+}
 /* 게임헤드 */
-#WL{
+.WL{
+    width: 100%;
+}.gamemode{
     width: 100%;
 }
-#gamemode{
+.time{
     width: 100%;
 }
-#time{
-    width: 100%;
-}
-#date{
+.date{
     width: 100%;
 }
 .WIN{
@@ -52,10 +54,10 @@ body{
 .letterSpacing{
     margin: 10px 0px 0px 0px;
 }
-#champion{
+.champion{
     width: 30px;
 }
-#spell{
+.spell{
     width: 15px;
 }
 /* 테이블 정보 */
@@ -163,7 +165,7 @@ transform: translate(-50%);
     display: none;
     background-color: white;
 }
-#userName{
+.userName{
     font-size: 13px;
     width: 100%;
 }
@@ -174,7 +176,7 @@ transform: translate(-50%);
     width: auto;
     height: 40px;
 }
-#champLevel{
+.champLevel{
     width: 15px;
     color: white;
     background-color: black;
@@ -186,8 +188,8 @@ transform: translate(-50%);
         width: 500px;
     }
     .div1{
-        width: 50px;
         flex-direction: column;
+        line-height: 1.5rem;
     }
     .game{
         flex-direction: row;
