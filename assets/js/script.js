@@ -252,9 +252,9 @@ function getSpell(data){
 
 function getitem(data){
     if(data == 0){
-        return `<img src="assets/image/item0.png" class="size"/>`;
+        return ``;
     }else{
-        return `<img src="https://opgg-static.akamaized.net/meta/images/lol/item/${data}.png?image=q_auto,f_webp,w_44&v=1669025525721" class="size"/>`;
+        return `<img src="https://opgg-static.akamaized.net/meta/images/lol/item/${data}.png?image=q_auto,f_webp,w_44&v=1669025525721" class="size border30"/>`;
     };
 };
 
