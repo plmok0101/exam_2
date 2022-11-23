@@ -3,6 +3,20 @@
 body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 } 
+/* abc */
+.px20{
+    width: 20px;
+}
+.px15{
+    width: 15px;
+}
+
+
+/* asdfasdf */
+
+.abcd{
+    background-color: white;
+}
 .wdMax{
     width: 100%;
 }
