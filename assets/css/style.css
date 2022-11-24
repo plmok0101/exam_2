@@ -4,14 +4,22 @@ body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     height: 100%;
 }
+.abc123{
+    text-align: center;
+    color:white;
+    font-size: 5rem;
+}
 .PlusBtn{
     transform: rotate(0deg);
 } 
 .KDA{
     padding-left: 10px;
+    font-size: 1rem;
+    color: white;
 }
 .wl2{
     color: gray;
+    font-size: 0.9rem;
 }
 .abcd{
     background-color: #1a1a1a;
@@ -46,11 +54,14 @@ body{
     justify-content: space-between;
 }
 .kda{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: white;
 }
 .textRight{
     text-align:right;
+}
+.kda2{
+    margin-left: 10px;
 }
 .kda2,.CS,.gold,.damage{ 
     font-size: 0.7rem;
@@ -68,6 +79,7 @@ body{
 }
 .wl{
     color: gray;
+    font-size: 0.9rem;
 }
 .ri{
     justify-content: flex-end;
@@ -76,7 +88,7 @@ body{
 /* 게임헤드 */
 .WL{
     width: 100%;
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: white;
 }.gamemode{
     width: 100%;
@@ -85,7 +97,7 @@ body{
 }
 .time{
     width: 100%;
-    font-size: 0.8rem;
+    font-size:1rem;
     color: white
 }
 .date{
@@ -119,10 +131,10 @@ body{
 /* 게임헤드 */
 /* 테이블 정보 */
 .pad{
-    padding: 10px 0px 5px 0px;
+    padding: 10px 10px 10px 10px;
 }
 .td{
-    padding: 10px 2px 10px 2px;
+    padding: 10px 10px 10px 10px;
     border-top: 1px solid gray;
 }
 .champion{
@@ -138,9 +150,6 @@ body{
 /* 테이블 정보 */
 .flex{
     display: flex;
-}
-.div2{
-    width: 100%;
 }
 button{
     background-color: transparent
@@ -167,7 +176,7 @@ button{
     border: none;
 }
 .con{
-    padding: 0 2% 0 2%;
+    padding: 0 5% 0 5%;
     position: relative;
 }
 .cen{
@@ -191,7 +200,10 @@ transform: translate(-50%);
     background-color: wheat;
 }
 .div2{
+    width: 100%;
     display: none;
+    background-color: #1a1a1a;
+    margin-bottom: 30px;
 }
 .div1{
     flex-direction: column;
@@ -230,7 +242,7 @@ transform: translate(-50%);
     background-color: white;
 }
 .userName{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     width: 100%;
     color: white;
 }

@@ -33,6 +33,13 @@ function KDA(k,d,a){
     return (k+a)/d.toFixed(2);
 }
 
+function getdt(data){
+    if(data < 1){
+        return 1;
+    }else{
+        return data;
+    }
+}
 
 function ajax3(i){
     html = document.querySelector("#template").innerHTML;
@@ -86,7 +93,7 @@ function ajax3(i){
                 item5 = getitem(data.info.participants[n].item4);
                 item6 = getitem(data.info.participants[n].item5);
                 ward = getward(data.info.participants[n].item6);
-                kda = ((data.info.participants[n].kills + data.info.participants[n].assists)/data.info.participants[n].deaths).toFixed(2);
+                kda = ((data.info.participants[n].kills + data.info.participants[n].assists)/getdt(data.info.participants[n].deaths)).toFixed(2);
                 minCs = ((data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled)/min).toFixed(1);
                 gold  = (data.info.participants[n].goldEarned/1000).toFixed(1);
                 damage = (data.info.participants[n].totalDamageDealtToChampions/1000).toFixed(1);
@@ -324,7 +331,6 @@ $(document).ready(function(){
         let html = document.querySelector("#template").innerHTML;
         let html2 = document.querySelector("#template2").innerHTML;
 
-    $("header").css("height",$("#opgg").height());
     $("#form").submit(function(event){
         nickname = $("#nickname").val();
         nickname =nickname.replace(/(\s*)/g, "").toUpperCase();
