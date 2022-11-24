@@ -2,20 +2,27 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    height: 100%;
+}
+.PlusBtn{
+    transform: rotate(0deg);
 } 
-/* abc */
-.px20{
-    width: 20px;
+.KDA{
+    padding-left: 10px;
 }
-.px15{
-    width: 15px;
+.wl2{
+    color: gray;
 }
-
-
-/* asdfasdf */
-
 .abcd{
-    background-color: white;
+    background-color: #1a1a1a;
+    padding: 10px 10px 10px 2px;
+    width: 100%;
+}
+.ward{
+    width: 20px;
+    background-color: gray;
+    border-radius: 50%;
+    margin: 1% 1px 0px 1px;
 }
 .wdMax{
     width: 100%;
@@ -28,15 +35,12 @@ body{
 }
 .item{
     width: 20px;
-    background-color: black;
+    background-color: gray;
     border-radius: 30%;
-    margin: 0px 1px 0px 1px;
+    margin: 1% 1px 0px 1px;
 }
 .chamKda{
     padding-left: 10px;
-}
-.td{
-    border-bottom: 1px solid gray;
 }
 .flexBtw{
     justify-content: space-between;
@@ -45,20 +49,25 @@ body{
     font-size: 0.9rem;
     color: white;
 }
+.textRight{
+    text-align:right;
+}
 .kda2,.CS,.gold,.damage{ 
     font-size: 0.7rem;
     color: gray;
 }
+.gamemodeDate{
+    line-height: 1.2rem;
+}
 .flexColum{
     flex-direction: column;
-}
-.teamPlusBtn{
-    width: 100%;
-    background-color: white;
 }
 .perk{
     width: 15px;
     padding: 0px 2px 0px 2px;
+}
+.wl{
+    color: gray;
 }
 .ri{
     justify-content: flex-end;
@@ -67,30 +76,45 @@ body{
 /* 게임헤드 */
 .WL{
     width: 100%;
+    font-size: 0.8rem;
+    color: white;
 }.gamemode{
     width: 100%;
+    font-size: 0.8rem;
+    color: gray;
 }
 .time{
     width: 100%;
+    font-size: 0.8rem;
+    color: white
 }
 .date{
     width: 100%;
+    font-size: 0.8rem;
+    color: gray;
 }
 .WIN{
-    background-color: #b3cbff;
+    background-color: #4d4dff;
 }
 .winColor{
-    color: blue;
+    color: #4d4dff;
+}
+.WINborder{
+    border-top: #4d4dff 1px solid;
 }
 .LOSE{
-    background-color: #ff99a8;
+    background-color: #ff4d4d;
+}
+.LOSEborder{
+    border-top: #ff4d4d 1px solid;
 }
 .loseColor{
-    color: red;
+    color: #ff4d4d;
 }
 .head{
     color: white;
     justify-content: center;
+    width: 40px;
 }
 /* 게임헤드 */
 /* 테이블 정보 */
@@ -99,6 +123,7 @@ body{
 }
 .td{
     padding: 10px 2px 10px 2px;
+    border-top: 1px solid gray;
 }
 .champion{
     width: 30px;
@@ -158,15 +183,19 @@ transform: translate(-50%);
 }
 .section{
     position: relative;
-    width: 100%; height: 100%;
+    width: 100%; height: auto;
     text-align: center;
 }
 .btn{
     width: 500px;   height: 50px ;
     background-color: wheat;
 }
-.team2{
+.div2{
     display: none;
+}
+.div1{
+    flex-direction: column;
+    line-height: 1.5rem;
 }
 .game{
     position: relative; top:70px;
@@ -220,17 +249,5 @@ transform: translate(-50%);
     font-size: 12px;
 }
 @media (min-width: 700px){
-    .box{
-        width: 500px;
-    }
-    .div1{
-        flex-direction: column;
-        line-height: 1.5rem;
-    }
-    .game{
-        flex-direction: row;
-        width: 600px;
-        position:relative; left: 50%;
-        transform: translate(-50%);
-    }
+
 }

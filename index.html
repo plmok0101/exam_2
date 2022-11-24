@@ -24,58 +24,67 @@
                 <button type="submit" id ="search"><img src="assets/image/search2.png" class="size2"/></button>
             </div>
             </form>
-        </div> 
+        </div>
+        <div class="cen">
+            <div class="loading"></div>
+            <button type="button" id="plusBtn" >더보기</button> 
+        </div>
     </section>
-    <div class="cen">
-    <div class="loading"></div>
-    <button type="button" id="plusBtn" >더보기</button>
-    </div>
 </body>
 <!----------템플릿1----------------------------------------------------------------------------------------------------------------------------------------------------->
 <script id = "template" type="text/template">
     <div class = "game" id ="game">
-        <div class="abcd flex flexColum">
-            <div class="flex wdMax">
-                <div class="flex ">
-                    <div class="champion">{champion}</div>
-                    <div class="spell flex">{spell1}{spell2}</div>
-                    <div class = "perk">{perk}{perkStyle}</div>
+        <div class="flex">
+            <div class="head div1 flex">
+                <p class ="WL">{wl}</p><p class="time">{time}</p>
+            </div>
+            <div class="abcd flex flexColum">
+                <div class="flex wdMax">
+                    <div class="flex ">
+                        <div class="champion"></div>
+                        <div class="spell flex"></div>
+                        <div class="perk"></div>
+                    </div>
+                    <div class="flex wdMax">
+                        <div class="wdMax KDA kda textLeft"></div>
+                        <div class="wdMax gamemodeDate ri">
+                            <div class="gamemode textRight">{gamemode}</div>
+                            <div class="date textRight">{date}</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex wdMax">
-                    <div class="wdMax KDA">{kda}</div>
-                    <div class="wdMax">
-                        <div class="gamemode_">{gamemode}</div>
-                        <div class="date_">{date}</div>
+                    <div class="flex wdMax">
+                        <div class="item item1"></div>
+                        <div class="item item2"></div>
+                        <div class="item item3"></div>
+                        <div class="item item4"></div>
+                        <div class="item item5"></div>
+                        <div class="item item6"></div>
+                        <div class="ward">{ward}</div>
+                    </div>
+                    <div class= "PlusBtn">
+                        <img src="assets/image/open.svg" class="size"/>
                     </div>
                 </div>
             </div>
-            <div class="flex wdMax">
-                <div class="item">{item1}</div>
-                <div class="item">{item2}</div>
-                <div class="item">{item3}</div>
-                <div class="item">{item4}</div>
-                <div class="item">{item5}</div>
-                <div class="item">{item6}</div>
-                <div class="item">{ward}</div>
-            </div>
-        </div>
-        <div class="head div1 flex">
-            <p class ="WL">{wl}</p><p class ="gamemode">{gamemode}</p><p class="time">{time}</p><p class="date">{date}</p>
+
         </div>
         <div class="div2">
             <div class="team1">
                 <div class = "flex pad">
-                    <div class ="wl wdMax">{team1}</div>
+                    <div class ="wl">{team1}</div>
+                    <div class ="wl2"></div>
                 </div>
                 <div class = "team1_2"></div>
             </div>
             <div class="team2">
                 <div class = "flex pad">
-                    <div class ="wl wdMax">{team2}</div>
+                    <div class ="wl">{team2}</div>
+                    <div class ="wl2"></div>
                 </div>
                 <div class = "team2_2"></div>
             </div>
-            <button class="teamPlusBtn" id ="teamPlusBtn">˅</button>
         </div>
     </div>
 </script>
@@ -97,8 +106,9 @@
                 <div class="item">{item2}</div>
                 <div class="item">{item3}</div>
                 <div class="item">{item4}</div>
-                <div class="item">{item5}</div>                    <div class="item">{item6}</div>
-                <div class="item">{ward}</div>
+                <div class="item">{item5}</div>                    
+                <div class="item">{item6}</div>
+                <div class="ward">{ward}</div>
             </div>
             <div class="flex wdMax flexBtw">
                 <div class="CS"><span>{cs}{minCs} / <span><span class="gold">{gold}</span> </div>
