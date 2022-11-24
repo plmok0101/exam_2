@@ -1,4 +1,4 @@
-const api_key = "RGAPI-7a918bbb-6963-4fed-b7a0-ab9554d7a7c3";
+const api_key = "RGAPI-962127c5-78c3-491c-a8e7-b8b34706dc3e";
 let nickname;
 let game = [];
 let puuid;
@@ -76,10 +76,27 @@ function ajax3(i){
                 );
             }
             for(let n = 0; n<10; n++){
+                spel1 = getSpell(data.info.participants[n].summoner1Id);
+                spel2 = getSpell(data.info.participants[n].summoner2Id);
+    
+                item1 = getitem(data.info.participants[n].item0);
+                item2 = getitem(data.info.participants[n].item1);
+                item3 = getitem(data.info.participants[n].item2);
+                item4 = getitem(data.info.participants[n].item3);
+                item5 = getitem(data.info.participants[n].item4);
+                item6 = getitem(data.info.participants[n].item5);
+                ward = getward(data.info.participants[n].item6);
+                kda = ((data.info.participants[n].kills + data.info.participants[n].assists)/data.info.participants[n].deaths).toFixed(2);
+                minCs = ((data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled)/min).toFixed(1);
+                gold  = (data.info.participants[n].goldEarned/1000).toFixed(1);
+                damage = (data.info.participants[n].totalDamageDealtToChampions/1000).toFixed(1);
+
                 if(nickname == (data.info.participants[n].summonerName).replace(/(\s*)/g, "").toUpperCase()){
                     teamId = (data.info.participants[n].teamId);
                     teamOne = getTeam(teamId);
                     teamTwo = getTeam2(teamId);
+                    $(".abcd").find(".champion").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size border30"/>`)
+                    $(`.abcd`).find(".KDA").html(`<div> ${data.info.participants[n].kills} / ${data.info.participants[n].deaths} / ${data.info.participants[n].assists} </div>`);
                     if(data.info.participants[n].win){
                         $(`#game${i+1} > .head > .WL`).text("승리");
                         $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`승리(${teamOne})`);
@@ -98,20 +115,7 @@ function ajax3(i){
                         $(`#game${i+1} > .head`).addClass(`LOSE`);
                     }
                 }
-                spel1 = getSpell(data.info.participants[n].summoner1Id);
-                spel2 = getSpell(data.info.participants[n].summoner2Id);
-    
-                item1 = getitem(data.info.participants[n].item0);
-                item2 = getitem(data.info.participants[n].item1);
-                item3 = getitem(data.info.participants[n].item2);
-                item4 = getitem(data.info.participants[n].item3);
-                item5 = getitem(data.info.participants[n].item4);
-                item6 = getitem(data.info.participants[n].item5);
-                ward = getward(data.info.participants[n].item6);
-                kda = ((data.info.participants[n].kills + data.info.participants[n].assists)/data.info.participants[n].deaths).toFixed(2);
-                minCs = ((data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled)/min).toFixed(1);
-                gold  = (data.info.participants[n].goldEarned/1000).toFixed(1);
-                damage = (data.info.participants[n].totalDamageDealtToChampions/1000).toFixed(1);
+
                 if(n<5){
                     team1 += html2.replace(`{champion}`,`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size border30"/>`)
                                        .replace(`{champLevel}`,data.info.participants[n].champLevel)
@@ -166,7 +170,7 @@ function ajax3(i){
             }
             if(teamId == 200){
                 document.querySelector(`#game${i+1} .team1_2`).innerHTML = team2;
-                document.querySelector(`#game${i+1} .team2_2`).innerHTML = team1; 
+                  document.querySelector(`#game${i+1} .team2_2`).innerHTML = team1; 
             }
         }
     })
