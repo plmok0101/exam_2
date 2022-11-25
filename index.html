@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/script.js"></script>
@@ -16,20 +20,19 @@
             전적검색
         </div>
     </header>
-    <button type="button" id="btn" >test</button>
     <section class="section">
         <div class="con" >
-            <form id = "form">
+            <form class = "he" id ="form">
                 <div class="box cen">
-                <label for = "nickname"></label>
-                <input type="text" id ="nickname" placeholder="소환사 검색.">
-                <button type="submit" id ="search"><img src="assets/image/search2.png" class="size2"/></button>
-            </div>
+                    <label for = "nickname"></label>
+                    <input type="text" id ="nickname" placeholder="소환사 검색.">
+                    <button type="submit" id ="search"><i class="fas fa-search"></i></button>
+                </div>
             </form>
         </div>
-        <div class="cen">
+        <div class="cen wd90">
             <div class="loading"></div>
-            <button type="button" id="plusBtn" >더보기</button> 
+            <button type="button" class="wdMax" id="plusBtn" >더보기</button> 
         </div>
     </section>
 </body>
@@ -49,6 +52,10 @@
                     </div>
                     <div class="flex wdMax">
                         <div class="wdMax KDA textLeft"></div>
+                        <div class="wdMax csDamage">
+                            <div class ="CS"></div>
+                            <div class="damage"></div>
+                        </div>
                         <div class="wdMax gamemodeDate ri">
                             <div class="gamemode textRight">{gamemode}</div>
                             <div class="date textRight">{date}</div>

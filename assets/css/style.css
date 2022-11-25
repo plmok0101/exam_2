@@ -1,13 +1,37 @@
 @import "reset.css";
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.fa-search{
+    color:gray
+}
+/* aadsfdfadfsasaf */
+.he{
+    height:70px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+ transition: background-color 5000s ease-in-out 0s;
+ -webkit-transition: background-color 9999s ease-out;
+ -webkit-box-shadow: 0 0 0px 1000px #242729 inset;
+ -webkit-text-fill-color: white;
+ caret-color: white;
+}
+/* adfsasfasfa */
+html{
+    height: 100%;
+}
 body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     height: 100%;
 }
 .abc123{
     text-align: center;
-    color:white;
+    color: gray;
     font-size: 5rem;
+    text-shadow: white 0px 0px 20px;
+    line-height: 10rem;
 }
 .PlusBtn{
     transform: rotate(0deg);
@@ -41,9 +65,12 @@ body{
 .border50{
     border-radius: 50%;
 }
+.csDamage{
+    line-height: 1.2rem;
+}
 .item{
     width: 20px;
-    background-color: gray;
+    background-color: #303030;
     border-radius: 30%;
     margin: 1% 1px 0px 1px;
 }
@@ -134,7 +161,8 @@ body{
     padding: 10px 10px 10px 10px;
 }
 .td{
-    padding: 10px 10px 10px 10px;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 10px 0px 10px;
     border-top: 1px solid gray;
 }
 .champion{
@@ -161,7 +189,7 @@ button{
     position: relative;
     width: 80%;   height: 50px;
     border-radius: 30px;
-    background-color: white;
+    background-color: #242729;
 }
 #nickname{
     border: none;
@@ -169,15 +197,19 @@ button{
     position:absolute; left: 30px;
     width: 70%;
     height: 90%;
+    background-color: #242729;
+    color: white
 }
 #search{
     position: absolute; right: 0px;
     width: auto;   height: 100%;
     border: none;
+    font-size: 1.5rem; text-align: center;
 }
 .con{
     padding: 0 5% 0 5%;
     position: relative;
+    height: auto;
 }
 .cen{
 position: absolute; left: 50%;
@@ -192,7 +224,7 @@ transform: translate(-50%);
 }
 .section{
     position: relative;
-    width: 100%; height: auto;
+    width: 100%; height: 100%;
     text-align: center;
 }
 .btn{
@@ -208,9 +240,10 @@ transform: translate(-50%);
 .div1{
     flex-direction: column;
     line-height: 1.5rem;
+    width: 50px;
 }
 .game{
-    position: relative; top:70px;
+    position: relative;
     display: flex;
     padding: 2px 0px 2px 0px;
     justify-content: center;
@@ -218,7 +251,9 @@ transform: translate(-50%);
     width: 100%;
     text-align: center;
 }
-
+.wd90{
+    width: 90%;
+}
 .loading{
     position: relative;
     border: 9px solid gray;
@@ -239,7 +274,10 @@ transform: translate(-50%);
 }
 #plusBtn{
     display: none;
-    background-color: white;
+    background-color: #242729;
+    border: none;
+    color: gray;
+    ;
 }
 .userName{
     font-size: 0.8rem;

@@ -1,4 +1,4 @@
-const api_key = "RGAPI-962127c5-78c3-491c-a8e7-b8b34706dc3e";
+const api_key = "RGAPI-987bb6fc-bb5e-4424-9278-f791fedb1a43";
 let nickname;
 let game = [];
 let puuid;
@@ -113,6 +113,8 @@ function ajax3(i){
                     $(`#game${i+1}`).find(".item5").html(item5);
                     $(`#game${i+1}`).find(".item6").html(item6);
                     $(`#game${i+1}`).find(".ward").html(ward);
+                    $(`#game${i+1}`).find(".CS").html(`${data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled}    (${minCs})`);
+                    $(`#game${i+1}`).find(".damage").html(damage)
                     if(data.info.participants[n].win){
                         $(`#game${i+1} > .flex > .head > .WL`).text("승");
                         $(`#game${i+1} > .flex > .head`).addClass(`WIN`);
