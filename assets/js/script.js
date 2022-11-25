@@ -41,12 +41,12 @@ function getdt(data){
     }
 }
 
-function ajax3(i){
+function ajax3(i,a){
     html = document.querySelector("#template").innerHTML;
     html2 = document.querySelector("#template2").innerHTML;
     $.ajax({
         type: "get",
-        url:`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i]}?api_key=${api_key}`,
+        url:`https://asia.api.riotgames.com/lol/match/v5/matches/${game[i+a]}?api_key=${api_key}`,
         dataType:"json",
         async: false,
         success: function(data){
@@ -66,20 +66,20 @@ function ajax3(i){
             date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
             if(btDay<10){
                 $(".con").append(
-                    html.replace(`id ="game"`, `id ="game${i+1}"`)
+                    html.replace(`id ="game"`, `id ="game${i+1+a}"`)
                         .replace(`{time}`,`${min}:${sec}`)
                         .replace(`{gamemode}`,gamemode)
                         .replace(`{date}`,btDay+"일전")
                         .replace(`{Wl}`,)
-                        .replace(`class ="teamPlusBtn"`,`class ="teamPlusBtn${i+1}"`)
+                        .replace(`class ="teamPlusBtn"`,`class ="teamPlusBtn${i+1+a}"`)
                 );
             }else{
                 $(".con").append(
-                    html.replace(`id ="game"`, `id ="game${i+1}"`)
+                    html.replace(`id ="game"`, `id ="game${i+1+a}"`)
                         .replace(`{time}`,`${min}:${sec}`)
                         .replace(`{gamemode}`,gamemode)
                         .replace(`{date}`,date)
-                        .replace(`class ="teamPlusBtn"`,`class ="teamPlusBtn${i+1}"`)
+                        .replace(`class ="teamPlusBtn"`,`class ="teamPlusBtn${i+1+a}"`)
                 );
             }
             for(let n = 0; n<10; n++){
@@ -102,45 +102,46 @@ function ajax3(i){
                     teamId = (data.info.participants[n].teamId);
                     teamOne = getTeam(teamId);
                     teamTwo = getTeam2(teamId);
-                    $(`#game${i+1}`).find(".champion").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size border30"/>`);
-                    $(`#game${i+1}`).find(".KDA").html(`<div> ${data.info.participants[n].kills} / ${data.info.participants[n].deaths} / ${data.info.participants[n].assists} </div>`);
-                    $(`#game${i+1}`).find(".spell").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/><img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/>`);
-                    $(`#game${i+1}`).find(".perk").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/perk/${data.info.participants[n].perks.styles[0].selections[0].perk}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/><img src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/${data.info.participants[n].perks.styles[1].style}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`);
-                    $(`#game${i+1}`).find(".item1").html(item1);
-                    $(`#game${i+1}`).find(".item2").html(item2);
-                    $(`#game${i+1}`).find(".item3").html(item3);
-                    $(`#game${i+1}`).find(".item4").html(item4);
-                    $(`#game${i+1}`).find(".item5").html(item5);
-                    $(`#game${i+1}`).find(".item6").html(item6);
-                    $(`#game${i+1}`).find(".ward").html(ward);
-                    $(`#game${i+1}`).find(".CS").html(`${data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled}    (${minCs})`);
-                    $(`#game${i+1}`).find(".damage").html(damage)
+                    $(`#game${i+1+a}`).find(".champion").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/champion/${data.info.participants[n].championName}.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_webp,w_92&v=1668492741460" class="size border30"/>`);
+                    $(`#game${i+1+a}`).find(".KDA").html(`<div> ${data.info.participants[n].kills} / ${data.info.participants[n].deaths} / ${data.info.participants[n].assists} </div>`);
+                    $(`#game${i+1+a}`).find(".spell").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel1}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/><img src="https://opgg-static.akamaized.net/meta/images/lol/spell/Summoner${spel2}.png?image=q_auto,f_webp,w_auto&v=1668492741460" class="size border30"/>`);
+                    $(`#game${i+1+a}`).find(".perk").html(`<img src="https://opgg-static.akamaized.net/meta/images/lol/perk/${data.info.participants[n].perks.styles[0].selections[0].perk}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/><img src="https://opgg-static.akamaized.net/meta/images/lol/perkStyle/${data.info.participants[n].perks.styles[1].style}.png?image=q_auto,f_webp,w_44&v=1669108845942" class="size"/>`);
+                    $(`#game${i+1+a}`).find(".item1").html(item1);
+                    $(`#game${i+1+a}`).find(".item2").html(item2);
+                    $(`#game${i+1+a}`).find(".item3").html(item3);
+                    $(`#game${i+1+a}`).find(".item4").html(item4);
+                    $(`#game${i+1+a}`).find(".item5").html(item5);
+                    $(`#game${i+1+a}`).find(".item6").html(item6);
+                    $(`#game${i+1+a}`).find(".ward").html(ward);
+                    $(`#game${i+1+a}`).find(".CS").html(`${data.info.participants[n].totalMinionsKilled + data.info.participants[n].neutralMinionsKilled}    (${minCs})`);
+                    $(`#game${i+1+a}`).find(".damage").html(`${damage}K`)
+                    $(`#game${i+1+a}`).find(".gold").html(`${gold}K`)
                     if(data.info.participants[n].win){
-                        $(`#game${i+1} > .flex > .head > .WL`).text("승");
-                        $(`#game${i+1} > .flex > .head`).addClass(`WIN`);
-                        $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`승`);
-                        $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).addClass(`winColor`);
-                        $(`#game${i+1} > .div2 > .team1 > .flex >.wl2`).text(`(${teamOne})`);
-                        $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).text(`패`);
-                        $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).addClass(`loseColor`);
-                        $(`#game${i+1} > .div2 > .team2 > .flex >.wl2`).text(`(${teamTwo})`);
-                        $(`#game${i+1} > .head > .WL`).addClass(`winColor`);
-                        $(`#game${i+1} > .div2 > .team1`).addClass(`WINborder`);
-                        $(`#game${i+1} > .div2 > .team2`).addClass(`LOSEborder`);
-                        $(`#game${i+1} > .head`).addClass(`WIN`);
+                        $(`#game${i+1+a} > .flex > .head > .WL`).text("승");
+                        $(`#game${i+1+a} > .flex > .head`).addClass(`WIN`);
+                        $(`#game${i+1+a} > .div2 > .team1 > .flex >.wl`).text(`승`);
+                        $(`#game${i+1+a} > .div2 > .team1 > .flex >.wl`).addClass(`winColor`);
+                        $(`#game${i+1+a} > .div2 > .team1 > .flex >.wl2`).text(`(${teamOne})`);
+                        $(`#game${i+1+a} > .div2 > .team2 > .flex >.wl`).text(`패`);
+                        $(`#game${i+1+a} > .div2 > .team2 > .flex >.wl`).addClass(`loseColor`);
+                        $(`#game${i+1+a} > .div2 > .team2 > .flex >.wl2`).text(`(${teamTwo})`);
+                        $(`#game${i+1+a} > .head > .WL`).addClass(`winColor`);
+                        $(`#game${i+1+a} > .div2 > .team1`).addClass(`WINborder`);
+                        $(`#game${i+1+a} > .div2 > .team2`).addClass(`LOSEborder`);
+                        $(`#game${i+1+a} > .head`).addClass(`WIN`);
                     }else{
-                        $(`#game${i+1} > .flex > .head > .WL`).text("패");
-                        $(`#game${i+1} > .flex > .head`).addClass(`LOSE`);
-                        $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).text(`패`);
-                        $(`#game${i+1} > .div2 > .team1 > .flex >.wl`).addClass(`loseColor`);
-                        $(`#game${i+1} > .div2 > .team1 > .flex >.wl2`).text(`(${teamOne})`);
-                        $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).text(`승`);
-                        $(`#game${i+1} > .div2 > .team2 > .flex >.wl`).addClass(`winColor`);
-                        $(`#game${i+1} > .div2 > .team2 > .flex >.wl2`).text(`(${teamTwo})`);
-                        $(`#game${i+1} > .head > .WL`).addClass(`loseColor`);
-                        $(`#game${i+1} > .div2 > .team1`).addClass(`LOSEborder`);
-                        $(`#game${i+1} > .div2 > .team2`).addClass(`WINborder`);
-                        $(`#game${i+1} > .head`).addClass(`LOSE`);
+                        $(`#game${i+1+a} > .flex > .head > .WL`).text("패");
+                        $(`#game${i+1+a} > .flex > .head`).addClass(`LOSE`);
+                        $(`#game${i+1+a} > .div2 > .team1 > .flex >.wl`).text(`패`);
+                        $(`#game${i+1+a} > .div2 > .team1 > .flex >.wl`).addClass(`loseColor`);
+                        $(`#game${i+1+a} > .div2 > .team1 > .flex >.wl2`).text(`(${teamOne})`);
+                        $(`#game${i+1+a} > .div2 > .team2 > .flex >.wl`).text(`승`);
+                        $(`#game${i+1+a} > .div2 > .team2 > .flex >.wl`).addClass(`winColor`);
+                        $(`#game${i+1+a} > .div2 > .team2 > .flex >.wl2`).text(`(${teamTwo})`);
+                        $(`#game${i+1+a} > .head > .WL`).addClass(`loseColor`);
+                        $(`#game${i+1+a} > .div2 > .team1`).addClass(`LOSEborder`);
+                        $(`#game${i+1+a} > .div2 > .team2`).addClass(`WINborder`);
+                        $(`#game${i+1+a} > .head`).addClass(`LOSE`);
                     }
                 }
 
@@ -193,12 +194,15 @@ function ajax3(i){
                }
             }
             if(teamId == 100){
-                document.querySelector(`#game${i+1} .team1_2`).innerHTML = team1;
-                document.querySelector(`#game${i+1} .team2_2`).innerHTML = team2;
+                document.querySelector(`#game${i+1+a} .team1_2`).innerHTML = team1;
+                document.querySelector(`#game${i+1+a} .team2_2`).innerHTML = team2;
             }
             if(teamId == 200){
-                document.querySelector(`#game${i+1} .team1_2`).innerHTML = team2;
-                  document.querySelector(`#game${i+1} .team2_2`).innerHTML = team1;
+                document.querySelector(`#game${i+1+a} .team1_2`).innerHTML = team2;
+                  document.querySelector(`#game${i+1+a} .team2_2`).innerHTML = team1;
+            }
+            if(i == 4){
+                $("#plusBtn").css("display", "block");
             }
         }
     })
@@ -343,19 +347,19 @@ $(document).ready(function(){
         };
         event.preventDefault();
         $(".loading").css("display", 'inline-block');
+        $("#plusBtn").css("display","none")
         setTimeout(function(){
         $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
             puuid = (data.puuid);
             $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
                 game = (data);
                 for(let i =0; i<5; i++){
-                    ajax3(i);
+                    ajax3(i,a);
                 }
 
             })
         })
         $(".loading").css("display", 'none');
-        $("#plusBtn").css("display", "block");
         },500)
     })
 
@@ -363,9 +367,10 @@ $(document).ready(function(){
     $("#plusBtn").click(function(){
         a +=5;
         $(".loading").css("display", 'inline-block');
+        $("#plusBtn").css("display", "none");
         setTimeout(function(){
-            for(let i = 0+a ; i < 5+a ; i++){
-                ajax3(i);
+            for(let i = 0 ; i < 5 ; i++){
+                ajax3(i,a);
             }
             $(".loading").css("display", 'none');
             $(".bot").insertAfter(".con");

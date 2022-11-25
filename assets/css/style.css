@@ -6,7 +6,10 @@
 }
 /* aadsfdfadfsasaf */
 .he{
-    height:70px;
+    height:6rem;
+}
+.mar25{
+    margin-top: -25px;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -28,17 +31,18 @@ body{
 }
 .abc123{
     text-align: center;
-    color: gray;
-    font-size: 5rem;
-    text-shadow: white 0px 0px 20px;
+    color: #6b66ff;
+    font-size: 5rem; font-weight:800;
     line-height: 10rem;
 }
 .PlusBtn{
     transform: rotate(0deg);
+    float: right;
 } 
 .KDA{
     padding-left: 10px;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
     color: white;
 }
 .wl2{
@@ -100,6 +104,9 @@ body{
 .flexColum{
     flex-direction: column;
 }
+.pad25{
+    padding-bottom: 25px;
+}
 .perk{
     width: 15px;
     padding: 0px 2px 0px 2px;
@@ -115,8 +122,9 @@ body{
 /* 게임헤드 */
 .WL{
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: white;
+    font-weight: 700;
 }.gamemode{
     width: 100%;
     font-size: 0.8rem;
@@ -124,13 +132,13 @@ body{
 }
 .time{
     width: 100%;
-    font-size:1rem;
-    color: white
+    font-size:0.9rem;
+    color: rgba(255, 255, 255, 0.6);
 }
 .date{
     width: 100%;
     font-size: 0.8rem;
-    color: gray;
+    color: #6b66ff;
 }
 .WIN{
     background-color: #4d4dff;
@@ -154,6 +162,15 @@ body{
     color: white;
     justify-content: center;
     width: 40px;
+}
+.textOver{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.flexShr{
+    flex-shrink: 0;
+    width: 153px;
 }
 /* 게임헤드 */
 /* 테이블 정보 */
@@ -190,6 +207,7 @@ button{
     width: 80%;   height: 50px;
     border-radius: 30px;
     background-color: #242729;
+    margin:  0% 10% 0% 10%;;
 }
 #nickname{
     border: none;
@@ -202,18 +220,14 @@ button{
 }
 #search{
     position: absolute; right: 0px;
-    width: auto;   height: 100%;
+    width: 50px;   height: 100%;
     border: none;
-    font-size: 1.5rem; text-align: center;
+    font-size: 1rem; text-align: center;
 }
 .con{
     padding: 0 5% 0 5%;
     position: relative;
     height: auto;
-}
-.cen{
-position: absolute; left: 50%;
-transform: translate(-50%);
 }
 .background{
     background-color: black;
@@ -251,18 +265,23 @@ transform: translate(-50%);
     width: 100%;
     text-align: center;
 }
+.fdsa{
+    padding: 0 5% 0 5%;
+    position: relative;
+}
 .wd90{
     width: 90%;
 }
 .loading{
     position: relative;
-    border: 9px solid gray;
+    border: 5px solid gray;
     border-radius: 50%;
     border-color: gray gray gray transparent;
-    width: 100px;   height: 100px;
-    animation: spinning 1s linear infinite;
+    width: 30px;   height: 30px;
+    animation: spinning 0.8s linear infinite;
     display: none;
     z-index: 100;
+    margin: 10px 0px 10px 0px;
 }
 @keyframes spinning {
     from{
@@ -277,7 +296,8 @@ transform: translate(-50%);
     background-color: #242729;
     border: none;
     color: gray;
-    ;
+    height: 80px;
+    font-size: 1.2rem;
 }
 .userName{
     font-size: 0.8rem;

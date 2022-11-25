@@ -17,21 +17,21 @@
 <body class="background">
     <header>
         <div class="abc123">
-            전적검색
+            LICHE.DEV
         </div>
     </header>
     <section class="section">
         <div class="con" >
             <form class = "he" id ="form">
-                <div class="box cen">
+                <div class="box">
                     <label for = "nickname"></label>
                     <input type="text" id ="nickname" placeholder="소환사 검색.">
                     <button type="submit" id ="search"><i class="fas fa-search"></i></button>
                 </div>
             </form>
         </div>
-        <div class="cen wd90">
-            <div class="loading"></div>
+        <div class="fdsa wd90">
+            <div class="loading"><span></span></div>
             <button type="button" class="wdMax" id="plusBtn" >더보기</button> 
         </div>
     </section>
@@ -45,7 +45,7 @@
             </div>
             <div class="abcd flex flexColum">
                 <div class="flex wdMax">
-                    <div class="flex ">
+                    <div class="flex pad25">
                         <div class="champion"></div>
                         <div class="spell flex"></div>
                         <div class="perk"></div>
@@ -55,14 +55,18 @@
                         <div class="wdMax csDamage">
                             <div class ="CS"></div>
                             <div class="damage"></div>
+                            <div class="gold"></div>
                         </div>
                         <div class="wdMax gamemodeDate ri">
                             <div class="gamemode textRight">{gamemode}</div>
                             <div class="date textRight">{date}</div>
+                            <div class= "PlusBtn">
+                                <img src="assets/image/open.svg" class="size"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex wdMax">
+                <div class="flex wdMax mar25">
                     <div class="flex wdMax">
                         <div class="item item1"></div>
                         <div class="item item2"></div>
@@ -71,9 +75,6 @@
                         <div class="item item5"></div>
                         <div class="item item6"></div>
                         <div class="ward">{ward}</div>
-                    </div>
-                    <div class= "PlusBtn">
-                        <img src="assets/image/open.svg" class="size"/>
                     </div>
                 </div>
             </div>
@@ -105,11 +106,11 @@
             <div class="spell flex">{spell1}{spell2}</div>
             <div class = "perk">{perk}{perkStyle}</div>
         </div>
-        <div class="flex flexColum wdMax chamKda">
-            <div class="userName textLeft">{userName}</div>
+        <div class="flex flexColum wdMax chamKda textOver">
+            <div class="userName textLeft textOver">{userName}</div>
             <div class="kda textLeft"><span>{k} / {d} / {a}</span><span class ="kda2">{kda}<span></div>
         </div>
-        <div class="flex flexColum">
+        <div class="flex flexColum flexshr">
             <div class="flex ri">
                 <div class="item">{item1}</div>
                 <div class="item">{item2}</div>
