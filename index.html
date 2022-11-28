@@ -19,12 +19,13 @@
         <div class="abc123">
             LICHE.DEV
         </div>
+        <!-- <button style="color:white;" class="btn" id="test">test</button> -->
     </header>
     <section class="section">
         <div class="con" >
             <form class = "he" id ="form">
-                <div class="box">
-                    <label for = "nickname"></label>
+                <div class="box flex">
+                    <label for = "nickname" id="nicknameLable"></label>
                     <input type="text" id ="nickname" placeholder="소환사 검색.">
                     <button type="submit" id ="search"><i class="fas fa-search"></i></button>
                 </div>
@@ -52,10 +53,10 @@
                     </div>
                     <div class="flex wdMax">
                         <div class="wdMax KDA textLeft"></div>
-                        <div class="wdMax csDamage">
-                            <div class ="CS"></div>
-                            <div class="damage"></div>
-                            <div class="gold"></div>
+                        <div class="wdMax csDamage flex">
+                            <div class ="CS wdMax"></div>
+                            <div class="damage wdMax"></div>
+                            <div class="gold wdMax"></div>
                         </div>
                         <div class="wdMax gamemodeDate ri">
                             <div class="gamemode textRight">{gamemode}</div>

@@ -20,10 +20,12 @@ input:-webkit-autofill:active {
  -webkit-box-shadow: 0 0 0px 1000px #242729 inset;
  -webkit-text-fill-color: white;
  caret-color: white;
+ border: none;
 }
 /* adfsasfasfa */
 html{
     height: 100%;
+    scroll-behavior: smooth;
 }
 body{
     font-family: "Noto Sans KR", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -32,7 +34,7 @@ body{
 .abc123{
     text-align: center;
     color: #6b66ff;
-    font-size: 5rem; font-weight:800;
+    font-size: 4rem; font-weight:800;
     line-height: 10rem;
 }
 .PlusBtn{
@@ -56,7 +58,7 @@ body{
 }
 .ward{
     width: 20px;
-    background-color: gray;
+    background-color: #303030;
     border-radius: 50%;
     margin: 1% 1px 0px 1px;
 }
@@ -71,6 +73,7 @@ body{
 }
 .csDamage{
     line-height: 1.2rem;
+    flex-direction: column;
 }
 .item{
     width: 20px;
@@ -207,16 +210,19 @@ button{
     width: 80%;   height: 50px;
     border-radius: 30px;
     background-color: #242729;
-    margin:  0% 10% 0% 10%;;
+    margin: 0 auto;
 }
 #nickname{
-    border: none;
+    border:none;
     outline: none;
-    position:absolute; left: 30px;
-    width: 70%;
-    height: 90%;
+    width: 80%;
+    height: 95%;
     background-color: #242729;
-    color: white
+    color: white;
+    opacity: 1;
+}
+#nicknameLable{
+    width: 30px;
 }
 #search{
     position: absolute; right: 0px;
@@ -264,6 +270,7 @@ button{
     flex-direction: column;
     width: 100%;
     text-align: center;
+    margin: 0 auto;
 }
 .fdsa{
     padding: 0 5% 0 5%;
@@ -298,6 +305,7 @@ button{
     color: gray;
     height: 80px;
     font-size: 1.2rem;
+    margin: 0 auto;
 }
 .userName{
     font-size: 0.8rem;
@@ -319,5 +327,83 @@ button{
     font-size: 12px;
 }
 @media (min-width: 700px){
-
+    .box{
+        max-width: 600px;
+    }
+    .game{
+        max-width: 1000px;
+    }
+    #plusBtn{
+        max-width: 1000px;
+    }
+    .kda2,.CS,.gold,.damage{
+        font-size: 1rem; 
+    }
+    .gamemode, .date, .userName, .kda{
+        font-size: 1.2rem;
+    }
+    .KDA, .WL, .time, .wl, .wl2{
+        font-size: 1.3rem;
+    }
+    .div1{
+        line-height: 2rem;
+    }
+    .champion{
+        width: 46px;
+        padding: 0px 4px 0px 4px;
+    }
+    .spell, .perk{
+        width: 23px;
+        padding: 0px 4px 0px 4px;
+    }
+    .item, .ward{
+        width: 30px;
+        margin: 1% 3px 0px 3px;
+    }
+    .div1{
+        width: 65px;
+    }
+    .gamemodeDate, .csDamage{
+        line-height: 1.5rem;
+    }
+    .mar25{
+        margin-top: -30px;
+    }
+    #nickname{
+        font-size: 1rem;
+        color: black;
+    }
+    .csDamage{
+        flex-direction: row;
+        align-items: center;
+    }
+    .background{
+        background-color: white;
+    }
+    .abcd{
+        background-color: #f1f1f1;
+    }
+    .KDA{
+        color: black;
+    }
+    #plusBtn, #nickname, .box{
+        background-color: #d9d9d9;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0px 1000px #d9d9d9 inset;
+        -webkit-text-fill-color: black;
+        -webkit-border-image: none;
+        caret-color: black;
+    }
+    .item, .ward{
+        background-color: #cccccc;
+    }
+    .div2{
+        background-color: #f1f1f1;
+    }.userName, .kda{
+        color: black;
+    }
 }

@@ -1,4 +1,4 @@
-const api_key = "RGAPI-987bb6fc-bb5e-4424-9278-f791fedb1a43";
+const api_key = "RGAPI-891717a6-f597-4c11-921f-8a21e1eb4d71";
 let nickname;
 let game = [];
 let puuid;
@@ -28,6 +28,7 @@ let kda;
 let minCs;
 let gold;
 let damage;
+let po;
 
 function KDA(k,d,a){
     return (k+a)/d.toFixed(2);
@@ -63,7 +64,7 @@ function ajax3(i,a){
             date = new Date(data.info.gameStartTimestamp);
             btDay = date2(data.info.gameStartTimestamp);
 
-            date = `${date.getFullYear()}년${date.getMonth()+1}월${date.getDate()}일`;
+            date = `${date.getFullYear()}.${date.getMonth()+1}.${date.getDate()}`;
             if(btDay<10){
                 $(".con").append(
                     html.replace(`id ="game"`, `id ="game${i+1+a}"`)
@@ -199,10 +200,15 @@ function ajax3(i,a){
             }
             if(teamId == 200){
                 document.querySelector(`#game${i+1+a} .team1_2`).innerHTML = team2;
-                  document.querySelector(`#game${i+1+a} .team2_2`).innerHTML = team1;
+                document.querySelector(`#game${i+1+a} .team2_2`).innerHTML = team1;
             }
             if(i == 4){
                 $("#plusBtn").css("display", "block");
+                po = $(`#plusBtn`).offset().top;
+                $("html").scrollTop(po);
+            }
+            if(i+a+1 == 20){
+                $("#plusBtn").css("display","none");
             }
         }
     })
@@ -347,7 +353,7 @@ $(document).ready(function(){
         };
         event.preventDefault();
         $(".loading").css("display", 'inline-block');
-        $("#plusBtn").css("display","none")
+        $("#plusBtn").css("display","none");
         setTimeout(function(){
         $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
             puuid = (data.puuid);
@@ -386,6 +392,14 @@ $(document).ready(function(){
         console.log(game[2])
         console.log($("#game1").find(".PlusBtn").html().trim())
     })
+
+
+    $("#test").click(function(){
+        console.log($(".con").offset());
+        console.log($("html").scrollTop());
+        $("html").scrollTop();
+    })
+
 })
 
 $(document).on("click",".abcd",function(event){
@@ -396,5 +410,5 @@ $(document).on("click",".abcd",function(event){
         $(this).find(".PlusBtn").css(`transform`,`rotate(0deg)`);
         $(this).find(".PlusBtn").html(`<img src="assets/image/open.svg" class="size">`);
     }
-    $(this).closest(".game").find(".div2").toggle();
+    $(this).closest(".game").find(".div2").slideToggle();
 })
