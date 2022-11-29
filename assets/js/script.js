@@ -1,4 +1,4 @@
-const api_key = "RGAPI-891717a6-f597-4c11-921f-8a21e1eb4d71";
+const api_key = "RGAPI-f359b0a6-77c7-45f5-bb90-402e5d6379f0";
 let nickname;
 let game = [];
 let puuid;
@@ -340,17 +340,82 @@ function getTeam2(data){
 }
 
 $(document).ready(function(){
-        let html = document.querySelector("#template").innerHTML;
-        let html2 = document.querySelector("#template2").innerHTML;
+    let html = document.querySelector("#template").innerHTML;
+    let html2 = document.querySelector("#template2").innerHTML;
 
-    $("#form").submit(function(event){
-        nickname = $("#nickname").val();
-        nickname =nickname.replace(/(\s*)/g, "").toUpperCase();
+    
+    $("#record > .rec1 ").text(localStorage.getItem(localStorage.key(0)));
+    $("#record > .rec2 ").text(localStorage.getItem(localStorage.key(1)));
+    $("#record > .rec3 ").text(localStorage.getItem(localStorage.key(2)));
+
+    $("#record > .rec").click(function(event){
+        $("#nickname").val($(this).text());
+        nickname = $("#nickname").val().replace(/(\s*)/g, "").toUpperCase();
+        if(localStorage.length == 0){
+            localStorage.setItem(`1`,$("#nickname").val());
+        }else if(localStorage.length == 1){
+            localStorage.setItem(`2`,$("#nickname").val());
+        }else if(localStorage.length == 2){
+            localStorage.setItem(`3`,$("#nickname").val());
+        }else{
+            localStorage.setItem(`1`,localStorage.getItem(2));
+            localStorage.setItem(`2`,localStorage.getItem(3));
+            localStorage.setItem(`3`,$(this).text());
+        };
+
+        $("#record > .rec1 ").text(localStorage.getItem(3));
+        $("#record > .rec2 ").text(localStorage.getItem(2));
+        $("#record > .rec3 ").text(localStorage.getItem(1));
+    
         a = 0;
         $('div.game').remove();
+        event.preventDefault();
+        $(".loading").css("display", 'inline-block');
+        $("#plusBtn").css("display","none");
+        setTimeout(function(){
+        $.getJSON(`https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/${nickname}?api_key=${api_key}`, function(data){
+            puuid = (data.puuid);
+            $.getJSON(`https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${api_key}`, function(data){
+                game = (data);
+                for(let i =0; i<5; i++){
+                    ajax3(i,a);
+                }
+
+            })
+        })
+        $(".loading").css("display", 'none');
+        },500)
+    })
+    
+    $("#record > .rec2 ").click(function(event){
+    })
+
+    $("#record > .rec3 ").click(function(event){
+    })
+
+    $("#form").submit(function(event){
+        nickname = $("#nickname").val().replace(/(\s*)/g, "").toUpperCase();
         if(nickname === ""){
             return false;
         };
+        if(localStorage.length == 0){
+            localStorage.setItem(`1`,$("#nickname").val());
+        }else if(localStorage.length == 1){
+            localStorage.setItem(`2`,$("#nickname").val());
+        }else if(localStorage.length == 2){
+            localStorage.setItem(`3`,$("#nickname").val());
+        }else{
+            localStorage.setItem(`1`,localStorage.getItem(2));
+            localStorage.setItem(`2`,localStorage.getItem(3));
+            localStorage.setItem(`3`,$("#nickname").val());
+        };
+
+        $("#record > .rec1 ").text(localStorage.getItem(3));
+        $("#record > .rec2 ").text(localStorage.getItem(2));
+        $("#record > .rec3 ").text(localStorage.getItem(1));
+    
+        a = 0;
+        $('div.game').remove();
         event.preventDefault();
         $(".loading").css("display", 'inline-block');
         $("#plusBtn").css("display","none");
@@ -393,11 +458,8 @@ $(document).ready(function(){
         console.log($("#game1").find(".PlusBtn").html().trim())
     })
 
-
     $("#test").click(function(){
-        console.log($(".con").offset());
-        console.log($("html").scrollTop());
-        $("html").scrollTop();
+        localStorage.removeItem($("#nickname").val());
     })
 
 })
