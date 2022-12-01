@@ -1,4 +1,4 @@
-const api_key = "RGAPI-f359b0a6-77c7-45f5-bb90-402e5d6379f0";
+const api_key = "RGAPI-a2f80e99-ab12-4986-9094-b7d9178dce17";
 let nickname;
 let game = [];
 let puuid;
@@ -29,6 +29,45 @@ let minCs;
 let gold;
 let damage;
 let po;
+
+
+function setItemTime(keyName, keyValue, ms){
+    let obj = {
+        value : keyValue,
+        expire : Date.now() + ms
+    }
+
+    let objStr = JSON.stringify(obj);
+
+    localStorage.setItem(keyName,objStr);
+}
+
+function setItemTime2(keyValue, ms){
+    let obj = {
+        value : keyValue,
+        expire : Date.now() + ms
+    }
+
+    let objStr = obj
+    return objStr;
+}
+
+
+function getItemTime(keyName){
+    let objStr = localStorage.getItem(keyName);
+
+    if(!objStr){
+        return null;
+    }
+
+    let obj = JSON.parse(objStr);
+
+    if(Date.now() > obj.expire){
+        localStorage.removeItem(keyName);
+        return null;
+    }
+    return obj;
+}
 
 function KDA(k,d,a){
     return (k+a)/d.toFixed(2);
@@ -214,7 +253,7 @@ function ajax3(i,a){
     })
 }
 
-
+// 게임모드
 function getgamemode(data){
     switch(data){
         case 420 :
@@ -240,7 +279,7 @@ function getgamemode(data){
     };
     return data;
 ;}
-
+// 승패
 function getWl(data){
     switch(data){
         case true :
@@ -252,7 +291,7 @@ function getWl(data){
     }
     return data;
 };
-
+// 스펠
 function getSpell(data){
     switch(data){
         case 1 :
@@ -291,7 +330,7 @@ function getSpell(data){
     }
     return data;
 }
-
+// 아이템
 function getitem(data){
     if(data == 0){
         return ``;
@@ -299,7 +338,7 @@ function getitem(data){
         return `<img src="https://opgg-static.akamaized.net/meta/images/lol/item/${data}.png?image=q_auto,f_webp,w_44&v=1669025525721" class="size border30"/>`;
     };
 };
-
+// 와드
 function getward(data){
     if(data == 0){
         return ``;
@@ -307,7 +346,7 @@ function getward(data){
         return `<img src="https://opgg-static.akamaized.net/meta/images/lol/item/${data}.png?image=q_auto,f_webp,w_44&v=1669025525721" class="size border50"/>`;
     };
 };
-
+// 게임날짜 
 function date2(data){
     date = new Date(data);
     now = new Date();
@@ -323,7 +362,7 @@ function date2(data){
     btDay = btMs / (1000*60*60*24);
     return btDay;
 }
-
+// 팀
 function getTeam(data){
     if(data == 100){
         return "블루팀"
@@ -338,34 +377,30 @@ function getTeam2(data){
         return "레드팀"
     }
 }
-
+// 화면 로딩
 $(document).ready(function(){
     let html = document.querySelector("#template").innerHTML;
     let html2 = document.querySelector("#template2").innerHTML;
 
     
-    $("#record > .rec1 ").text(localStorage.getItem(localStorage.key(0)));
-    $("#record > .rec2 ").text(localStorage.getItem(localStorage.key(1)));
-    $("#record > .rec3 ").text(localStorage.getItem(localStorage.key(2)));
+    $("#record > .rec1 ").text(getItemTime(3));
+    $("#record > .rec2 ").text(getItemTime(2));
+    $("#record > .rec3 ").text(getItemTime(1));
 
     $("#record > .rec").click(function(event){
+        if(nickname === ""){
+            return false;
+        };
         $("#nickname").val($(this).text());
         nickname = $("#nickname").val().replace(/(\s*)/g, "").toUpperCase();
-        if(localStorage.length == 0){
-            localStorage.setItem(`1`,$("#nickname").val());
-        }else if(localStorage.length == 1){
-            localStorage.setItem(`2`,$("#nickname").val());
-        }else if(localStorage.length == 2){
-            localStorage.setItem(`3`,$("#nickname").val());
-        }else{
-            localStorage.setItem(`1`,localStorage.getItem(2));
-            localStorage.setItem(`2`,localStorage.getItem(3));
-            localStorage.setItem(`3`,$(this).text());
-        };
 
-        $("#record > .rec1 ").text(localStorage.getItem(3));
-        $("#record > .rec2 ").text(localStorage.getItem(2));
-        $("#record > .rec3 ").text(localStorage.getItem(1));
+        let r = this.localStorage.length
+        setItemTime(`1 + ${r}`,$("#nickname").val(),600000);
+
+        console.log(localStorage.length)
+        $("#record > .rec1 ").text(getItemTime(3));
+        $("#record > .rec2 ").text(getItemTime(2));
+        $("#record > .rec3 ").text(getItemTime(1));
     
         a = 0;
         $('div.game').remove();
@@ -386,37 +421,60 @@ $(document).ready(function(){
         $(".loading").css("display", 'none');
         },500)
     })
-    
-    $("#record > .rec2 ").click(function(event){
-    })
 
-    $("#record > .rec3 ").click(function(event){
-    })
-
+    // 검색버튼
     $("#form").submit(function(event){
+        event.preventDefault();
         nickname = $("#nickname").val().replace(/(\s*)/g, "").toUpperCase();
         if(nickname === ""){
             return false;
         };
-        if(localStorage.length == 0){
-            localStorage.setItem(`1`,$("#nickname").val());
-        }else if(localStorage.length == 1){
-            localStorage.setItem(`2`,$("#nickname").val());
-        }else if(localStorage.length == 2){
-            localStorage.setItem(`3`,$("#nickname").val());
-        }else{
-            localStorage.setItem(`1`,localStorage.getItem(2));
-            localStorage.setItem(`2`,localStorage.getItem(3));
-            localStorage.setItem(`3`,$("#nickname").val());
-        };
+        
+        // let aaa = [];
+        // let bbb = [];
 
-        $("#record > .rec1 ").text(localStorage.getItem(3));
-        $("#record > .rec2 ").text(localStorage.getItem(2));
-        $("#record > .rec3 ").text(localStorage.getItem(1));
+        // if(localStorage.getItem(`history`)){
+        //     aaa = localStorage.getItem(`history`).split("/")
+        //     console.log(aaa);
+        //     for(let i = 0;  i< aaa.length; i++){
+        //         if(aaa[i].slice(-1) === ','){
+        //             const t = aaa[i].slice(0, -1);
+        //             aaa[i] = t
+        //         } 
+        //     }
+        // }
+        // console.log(aaa)
+        // if(aaa.length > 0){
+        //     bbb = aaa.filter((v, i) => {
+        //         let nV = JSON.parse(v)
+        //         console.log(nV)
+        //         return Date.now() <= nV.expire
+        //     })
+        //     console.log(bbb)
+        //     let ccc = `/{"value":${$('#nickname').val()}, "expire":${Date.now() + 600000}}`
+        //     bbb.push(ccc)
+        //     localStorage.setItem(`history`,bbb.join())
+        // }else{
+        //     console.log('asdasda')
+        //     setItemTime(`history`, $("#nickname").val(), 600000)
+        // }
+
+        // return
+        
+
+       adf = setItemTime2($("#nickname").val(),600000);
+       console.log(adf);
+        
+        let arr1 = new Array(localStorage.getItem(1));
+        console.log(arr1);
+
+        $("#record > .rec1 ").text(getItemTime(3));
+        $("#record > .rec2 ").text(getItemTime(2));
+        $("#record > .rec3 ").text(getItemTime(1));
     
+        event.preventDefault();
         a = 0;
         $('div.game').remove();
-        event.preventDefault();
         $(".loading").css("display", 'inline-block');
         $("#plusBtn").css("display","none");
         setTimeout(function(){
@@ -434,13 +492,13 @@ $(document).ready(function(){
         },500)
     })
 
-
+    // 더보기 버튼
     $("#plusBtn").click(function(){
         a +=5;
         $(".loading").css("display", 'inline-block');
         $("#plusBtn").css("display", "none");
-        setTimeout(function(){
-            for(let i = 0 ; i < 5 ; i++){
+        setTimeout( function() {
+            for( let i = 0 ; i < 5 ; i++ ){
                 ajax3(i,a);
             }
             $(".loading").css("display", 'none');
@@ -448,27 +506,20 @@ $(document).ready(function(){
         },500)
 
     })
-    // $("#game1 > .div2 > .team2_2").toggle();
-    $("#teamPlusBtn").click(function(){
-        console.log("wpqkf");
-    })
 
-    $("#btn").click(function(){
-        console.log(game[2])
-        console.log($("#game1").find(".PlusBtn").html().trim())
-    })
-
+    // 개발중 테스트용
     $("#test").click(function(){
         localStorage.removeItem($("#nickname").val());
     })
 
 })
 
+// 테이블 열기 닫기
 $(document).on("click",".abcd",function(event){
-        if($(this).find(".PlusBtn").html().trim() == `<img src="assets/image/open.svg" class="size">`){
-            $(this).find(".PlusBtn").css(`transform`,`rotate(180deg)`);
-            $(this).find(".PlusBtn").html(`<img src="assets/image/close.svg" class="size">`);
-    }else{
+    if( $(this).find(".PlusBtn").html().trim() == `<img src="assets/image/open.svg" class="size">` ){
+        $(this).find(".PlusBtn").css(`transform`,`rotate(180deg)`);
+        $(this).find(".PlusBtn").html(`<img src="assets/image/close.svg" class="size">`);
+    } else {
         $(this).find(".PlusBtn").css(`transform`,`rotate(0deg)`);
         $(this).find(".PlusBtn").html(`<img src="assets/image/open.svg" class="size">`);
     }
