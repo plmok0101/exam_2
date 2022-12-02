@@ -13,8 +13,7 @@
 }
 
 .del{
-    padding-left: 10px;
-    width: 50px;
+    width: 30px;
 }
 
 input:-webkit-autofill,
@@ -259,6 +258,8 @@ button{
 #record{
     color: white;
     margin: 0 auto;
+    padding: 10px 0px 20px 0px;
+    font-size: 0.8rem;
 }
 .btn{
     width: 300px;   height: 50px ;
@@ -422,5 +423,6 @@ button{
     #record{
         color: black;
         max-width: 600px;
+        font-size: 1rem;
     }
 }

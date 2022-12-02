@@ -408,6 +408,7 @@ $(document).ready(function(){
 
 //삭제 버튼
 $(document).on("click", ".del", function(event){
+
     let aaa = [];
     let bbb = [];
     let abc123 = [];
@@ -420,9 +421,11 @@ $(document).on("click", ".del", function(event){
     let nV = JSON.parse(v)
         return Date.now() <= nV.expire && $(this).closest(".rec").text() != nV.value
     })
-    console.log(bbb);
     if(bbb.length == 4){
         bbb.shift();
+    }
+    for(let i = 0; i<3; i++){
+        $(`.rec${i+1}`).empty();
     }
     for(let i =0; i<bbb.length; i++){
         abc123 = JSON.parse(bbb[i])
@@ -462,6 +465,9 @@ $(document).on("click", ".del", function(event){
             if(bbb.length == 4){
                 bbb.shift();
             }
+            for(let i = 0; i<3; i++){
+                $(`.rec${i+1}`).empty();
+            }
             for(let i =0; i<bbb.length; i++){
                 abc123 = JSON.parse(bbb[i])
                 $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
@@ -472,7 +478,6 @@ $(document).on("click", ".del", function(event){
             }
             localStorage.setItem(`history`,ddd)
         }
-return
         a = 0;
         $('div.game').remove();
         event.preventDefault();
@@ -491,10 +496,6 @@ return
         })
         $(".loading").css("display", 'none');
         },500)
-    })
-
-    $(".del").click( function(event) {
-        console.log(1234);
     })
 
     // 검색버튼
@@ -520,11 +521,12 @@ return
             })
             let ccc = `{"value":"${$('#nickname').val()}","expire":${Date.now() + 600000}}`
             bbb.push(ccc)
-            console.log(bbb);
             if(bbb.length == 4){
                 bbb.shift();
             }
-            console.log(bbb);
+            for(let i = 0; i<3; i++){
+                $(`.rec${i+1}`).empty();
+            }
             for(let i =0; i<bbb.length; i++){
                 abc123 = JSON.parse(bbb[i])
                 $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
@@ -557,7 +559,6 @@ return
             }
             localStorage.setItem(`history`,ddd)
         }
-        return
 
         a = 0;
         $('div.game').remove();
