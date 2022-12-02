@@ -1,4 +1,4 @@
-const api_key = "RGAPI-a2f80e99-ab12-4986-9094-b7d9178dce17";
+const api_key = "RGAPI-96d3ad7d-972a-463c-ba12-336dc9208f0c";
 let nickname;
 let game = [];
 let puuid;
@@ -37,7 +37,7 @@ function setItemTime(keyName, keyValue, ms){
         expire : Date.now() + ms
     }
 
-    let objStr = JSON.stringify(obj);
+    let objStr = JSON.stringify(obj)+`/`;
 
     localStorage.setItem(keyName,objStr);
 }
@@ -382,26 +382,97 @@ $(document).ready(function(){
     let html = document.querySelector("#template").innerHTML;
     let html2 = document.querySelector("#template2").innerHTML;
 
-    
-    $("#record > .rec1 ").text(getItemTime(3));
-    $("#record > .rec2 ").text(getItemTime(2));
-    $("#record > .rec3 ").text(getItemTime(1));
+    let aaa = [];
+    let bbb = [];
+    let abc123 = [];
 
-    $("#record > .rec").click(function(event){
+    if(localStorage.getItem(`history`)){
+        aaa = localStorage.getItem(`history`).split("/")
+        aaa.pop();
+    }
+    if(aaa.length > 0){
+        bbb = aaa.filter((v,i) => {
+            let nV = JSON.parse(v)
+            return Date.now() <= nV.expire
+        })
+        for(let i =0; i<bbb.length; i++){
+            abc123 = JSON.parse(bbb[i])
+            $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
+        }
+        let ddd = "";
+        for(let i = 0; i<bbb.length; i++){
+            ddd += `${bbb[i]}`+`/`;
+        }
+        localStorage.setItem(`history`,ddd)
+    }
+
+//삭제 버튼
+$(document).on("click", ".del", function(event){
+    let aaa = [];
+    let bbb = [];
+    let abc123 = [];
+
+    if(localStorage.getItem(`history`)){
+        aaa = localStorage.getItem(`history`).split("/")
+        aaa.pop();
+    }
+    bbb = aaa.filter((v,i) => {
+    let nV = JSON.parse(v)
+        return Date.now() <= nV.expire && $(this).closest(".rec").text() != nV.value
+    })
+    console.log(bbb);
+    if(bbb.length == 4){
+        bbb.shift();
+    }
+    for(let i =0; i<bbb.length; i++){
+        abc123 = JSON.parse(bbb[i])
+        $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
+    }
+    let ddd = "";
+    for(let i = 0; i<bbb.length; i++){
+        ddd += `${bbb[i]}`+`/`;
+    }
+    localStorage.setItem(`history`,ddd)
+})    
+
+
+// 최근검색
+    $(document).on("click", ".REC", function(event){
         if(nickname === ""){
             return false;
         };
         $("#nickname").val($(this).text());
         nickname = $("#nickname").val().replace(/(\s*)/g, "").toUpperCase();
 
-        let r = this.localStorage.length
-        setItemTime(`1 + ${r}`,$("#nickname").val(),600000);
-
-        console.log(localStorage.length)
-        $("#record > .rec1 ").text(getItemTime(3));
-        $("#record > .rec2 ").text(getItemTime(2));
-        $("#record > .rec3 ").text(getItemTime(1));
+        let aaa = [];
+        let bbb = [];
+        let abc123 = [];
     
+        if(localStorage.getItem(`history`)){
+            aaa = localStorage.getItem(`history`).split("/")
+            aaa.pop();
+        }
+        if(aaa.length > 0){
+            bbb = aaa.filter((v,i) => {
+                let nV = JSON.parse(v)
+                return Date.now() <= nV.expire &&  $("#nickname").val() != nV.value
+            })
+            let ccc = `{"value":"${$('#nickname').val()}","expire":${Date.now() + 30000}}`
+            bbb.push(ccc)
+            if(bbb.length == 4){
+                bbb.shift();
+            }
+            for(let i =0; i<bbb.length; i++){
+                abc123 = JSON.parse(bbb[i])
+                $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
+            }
+            let ddd = "";
+            for(let i = 0; i<bbb.length; i++){
+                ddd += `${bbb[i]}`+`/`;
+            }
+            localStorage.setItem(`history`,ddd)
+        }
+return
         a = 0;
         $('div.game').remove();
         event.preventDefault();
@@ -422,6 +493,10 @@ $(document).ready(function(){
         },500)
     })
 
+    $(".del").click( function(event) {
+        console.log(1234);
+    })
+
     // 검색버튼
     $("#form").submit(function(event){
         event.preventDefault();
@@ -430,49 +505,60 @@ $(document).ready(function(){
             return false;
         };
         
-        // let aaa = [];
-        // let bbb = [];
+        let aaa = [];
+        let bbb = [];
+        let abc123 = [];
 
-        // if(localStorage.getItem(`history`)){
-        //     aaa = localStorage.getItem(`history`).split("/")
-        //     console.log(aaa);
-        //     for(let i = 0;  i< aaa.length; i++){
-        //         if(aaa[i].slice(-1) === ','){
-        //             const t = aaa[i].slice(0, -1);
-        //             aaa[i] = t
-        //         } 
-        //     }
-        // }
-        // console.log(aaa)
-        // if(aaa.length > 0){
-        //     bbb = aaa.filter((v, i) => {
-        //         let nV = JSON.parse(v)
-        //         console.log(nV)
-        //         return Date.now() <= nV.expire
-        //     })
-        //     console.log(bbb)
-        //     let ccc = `/{"value":${$('#nickname').val()}, "expire":${Date.now() + 600000}}`
-        //     bbb.push(ccc)
-        //     localStorage.setItem(`history`,bbb.join())
-        // }else{
-        //     console.log('asdasda')
-        //     setItemTime(`history`, $("#nickname").val(), 600000)
-        // }
+        if(localStorage.getItem(`history`)){
+            aaa = localStorage.getItem(`history`).split("/")
+            aaa.pop();
+        }
+        if(aaa.length > 0){
+            bbb = aaa.filter((v,i) => {
+                let nV = JSON.parse(v)
+                return Date.now() <= nV.expire &&  $("#nickname").val() != nV.value
+            })
+            let ccc = `{"value":"${$('#nickname').val()}","expire":${Date.now() + 600000}}`
+            bbb.push(ccc)
+            console.log(bbb);
+            if(bbb.length == 4){
+                bbb.shift();
+            }
+            console.log(bbb);
+            for(let i =0; i<bbb.length; i++){
+                abc123 = JSON.parse(bbb[i])
+                $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
+            }
+            let ddd = "";
+            for(let i = 0; i<bbb.length; i++){
+                ddd += `${bbb[i]}`+`/`;
+            }
+            localStorage.setItem(`history`,ddd)
+        }else{
+            setItemTime(`history`, $("#nickname").val(), 600000)
+            if(localStorage.getItem(`history`)){
+                aaa = localStorage.getItem(`history`).split("/")
+                aaa.pop();
+            }
+            bbb = aaa.filter((v,i) => {
+            let nV = JSON.parse(v)
+                return Date.now() <= nV.expire
+            })
+            if(bbb.length == 4){
+                bbb.shift();
+            }
+            for(let i =0; i<bbb.length; i++){
+                abc123 = JSON.parse(bbb[i])
+                $(`.rec${i+1}`).html(`<span class="REC wdMax">${abc123.value}</span><i class="fas fa-times del"></i>`);
+            }
+            let ddd = "";
+            for(let i = 0; i<bbb.length; i++){
+                ddd += `${bbb[i]}`+`/`;
+            }
+            localStorage.setItem(`history`,ddd)
+        }
+        return
 
-        // return
-        
-
-       adf = setItemTime2($("#nickname").val(),600000);
-       console.log(adf);
-        
-        let arr1 = new Array(localStorage.getItem(1));
-        console.log(arr1);
-
-        $("#record > .rec1 ").text(getItemTime(3));
-        $("#record > .rec2 ").text(getItemTime(2));
-        $("#record > .rec3 ").text(getItemTime(1));
-    
-        event.preventDefault();
         a = 0;
         $('div.game').remove();
         $(".loading").css("display", 'inline-block');
